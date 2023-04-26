@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.Info"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#35393E">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#35393E"
+            tools:context=".activities.Info">
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="36dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/placeholder"
+                android:textColor="@color/et_color"
+                android:textSize="24sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_location"
+                app:layout_constraintLeft_toRightOf="@+id/icon_location"
+                app:layout_constraintRight_toLeftOf="@id/icon_delete" />
+
+            <TextView
+                android:id="@+id/tv_players"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                android:minHeight="36dp"
+                android:text="@string/placeholder"
+                android:textColor="@color/et_color"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/icon_players"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="36dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="35dp"
+                android:text="@string/placeholder"
+                android:textColor="@color/et_color"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/icon_calendar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_players" />
+
+            <TextView
+                android:id="@+id/tv_games"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="35dp"
+                android:minHeight="36dp"
+                android:text="@string/placeholder"
+                android:textColor="@color/et_color"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toRightOf="@+id/icon_game"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginRight="10dp"
+                android:minHeight="36dp"
+                android:text="@string/placeholder"
+                android:textColor="@color/et_color"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toRightOf="@+id/icon_description"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_games" />
+
+            <TextView
+                android:id="@+id/tv_createdBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="3dp"
+                android:minHeight="36dp"
+                android:text="@string/placeholder"
+                android:textColor="@color/et_color"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/icon_description"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+            <ImageView
+                android:id="@+id/icon_location"
+                android:layout_width="33dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_location"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/icon_players"
+                android:layout_width="33dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_location"
+                app:srcCompat="@drawable/ic_players"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/icon_calendar"
+                android:layout_width="33dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_players"
+                app:srcCompat="@drawable/ic_calendar"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/icon_game"
+                android:layout_width="33dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_calendar"
+                app:srcCompat="@drawable/ic_game"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/icon_description"
+                android:layout_width="36dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_games"
+                app:srcCompat="@drawable/ic_description"
+                tools:ignore="ContentDescription" />
+
+
+            <ImageView
+                android:id="@+id/icon_delete"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_bin"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/view_signup"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/rectangle"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="74dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+            <Button
+                android:id="@+id/btn_signup"
+                android:layout_width="130dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/et_color"
+                android:text="@string/sign_up"
+                android:textColor="@color/actionbar_color"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view_signup"
+                app:layout_constraintEnd_toEndOf="@+id/view_signup"
+                app:layout_constraintStart_toStartOf="@+id/view_signup" />
+
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/et_color"
+                android:hint="@string/write_a_message"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:textColor="@color/et_color"
+                android:textColorHint="@color/et_color"
+                android:textSize="19sp"
+                android:minLines="4"
+                android:maxLines="4"
+                android:textAlignment="viewStart"
+                app:layout_constraintEnd_toEndOf="@+id/view_signup"
+                app:layout_constraintStart_toStartOf="@+id/view_signup"
+                app:layout_constraintTop_toTopOf="@+id/view_signup" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="at.fhjoanneum.lanfinder.fragments.BurgerMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout="@layout/fragment_burger_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

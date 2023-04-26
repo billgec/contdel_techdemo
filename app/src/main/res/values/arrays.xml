@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="games">
+        <item>Battlefield</item>
+        <item>Call of Duty</item>
+        <item>Counter Strike</item>
+        <item>Fortnite</item>
+        <item>League of Legends</item>
+        <item>Overwatch</item>
+        <item>Pubg</item>
+        <item>Starcraft</item>
+        <item>Team Fortress</item>
+        <item>World of Warcraft</item>
+        <item>Rogue Company</item>
+        <item>Hand Simulator</item>
+        <item>The Forest</item>
+        <item>Minecraft</item>
+        <item>GTFO</item>
+        <item>Brawlhalla</item>
+        <item>Other</item>
+        <item>Add new</item>
+    </string-array>
+</resources>
