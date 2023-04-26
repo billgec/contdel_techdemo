@@ -19,7 +19,7 @@ class BurgerMenu : Fragment() {
     var isBurgerMenuOpen = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle
+        savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
@@ -27,44 +27,45 @@ class BurgerMenu : Fragment() {
         fab = view.findViewById(R.id.fab)
         my_lans_fab = view.findViewById(R.id.my_lans_fab)
         create_lan_fab = view.findViewById(R.id.create_lan_fab)
-        my_lans_fab.hide()
-        create_lan_fab.hide()
+        my_lans_fab?.hide()
+        create_lan_fab?.hide()
         isBurgerMenuOpen = false
-        fab.setOnClickListener(View.OnClickListener { listenerView: View? ->
+        fab?.setOnClickListener { listenerView ->
             val icon: Int
             if (!isBurgerMenuOpen) {
-                my_lans_fab.show()
-                create_lan_fab.show()
+                my_lans_fab?.show()
+                create_lan_fab?.show()
                 icon = R.drawable.ic_close
                 isBurgerMenuOpen = true
             } else {
-                my_lans_fab.hide()
-                create_lan_fab.hide()
+                my_lans_fab?.hide()
+                create_lan_fab?.hide()
                 icon = R.drawable.ic_menu
                 isBurgerMenuOpen = false
             }
-            fab.setImageDrawable(
+            fab?.setImageDrawable(
                 ContextCompat.getDrawable(
-                    activity.applicationContext,
+                    activity?.applicationContext ?: return@setOnClickListener,
                     icon
                 )
             )
-        })
+        }
 
         /*
          * forward to CreateLan activity
          */
-        create_lan_fab.setOnClickListener(View.OnClickListener { listenerView: View? ->
+        create_lan_fab?.setOnClickListener { listenerView ->
             val intent = Intent(activity, CreateLan::class.java)
             startActivity(intent)
-        })
+        }
 
         /*
          * forward to MyLans activity
-         */my_lans_fab.setOnClickListener(View.OnClickListener { listenerView: View? ->
+         */
+        my_lans_fab?.setOnClickListener { listenerView ->
             val intent = Intent(activity, MyLans::class.java)
             startActivity(intent)
-        })
+        }
         return view
     }
 }
