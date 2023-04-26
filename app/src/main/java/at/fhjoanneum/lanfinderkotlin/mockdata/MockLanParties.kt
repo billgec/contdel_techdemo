@@ -6,7 +6,7 @@ import java.util.GregorianCalendar
 
 object MockLanParties {
     var mockLanParties = ArrayList(
-        Arrays.asList(
+        listOf(
             LanParty(
                 1,
                 "Best LAN Party in Graz",
@@ -14,7 +14,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 1, 20, 16, 0, 0),
                 10,
-                HashSet(Arrays.asList("Battlefield", "Team Fortress")),
+                HashSet(listOf("Battlefield", "Team Fortress")),
                 "This is the best LAN Party in Graz. You should definitely come!",
                 MockUsers.mockUsers[0]
             ),
@@ -25,7 +25,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 5, 20, 0, 0),
                 4,
-                HashSet(Arrays.asList("Battlefield")),
+                HashSet(listOf("Battlefield")),
                 "This is a Battlefield LAN party. You should definitely come!",
                 MockUsers.mockUsers[0]
             ),
@@ -36,7 +36,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 6, 19, 0, 0),
                 15,
-                HashSet(Arrays.asList("Hand Simulator")),
+                HashSet(listOf("Hand Simulator")),
                 "This is a Hand simulator LAN party. You should definitely come!",
                 MockUsers.mockUsers[1]
             ),
@@ -47,7 +47,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 18, 19, 0, 0),
                 10,
-                HashSet(Arrays.asList("Battlefield")),
+                HashSet(listOf("Battlefield")),
                 "This is a Battlefield LAN party. You should definitely come!",
                 MockUsers.mockUsers[2]
             ),
@@ -58,7 +58,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 1, 18, 19, 0, 0),
                 8,
-                HashSet(Arrays.asList("League of Legends")),
+                HashSet(listOf("League of Legends")),
                 "This is a League of Legends LAN party. You should definitely come!",
                 MockUsers.mockUsers[3]
             ),
@@ -69,7 +69,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 1, 19, 18, 0, 0),
                 15,
-                HashSet(Arrays.asList("GTFO")),
+                HashSet(listOf("GTFO")),
                 "This is a GTFO LAN party. You should definitely come!",
                 MockUsers.mockUsers[4]
             ),
@@ -80,7 +80,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 13, 19, 0, 0),
                 5,
-                HashSet(Arrays.asList("Rogue Company")),
+                HashSet(listOf("Rogue Company")),
                 "This is a Rogue Company LAN party. You should definitely come!",
                 MockUsers.mockUsers[4]
             ),
@@ -91,7 +91,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 10, 20, 0, 0),
                 10,
-                HashSet(Arrays.asList("World of Warcraft")),
+                HashSet(listOf("World of Warcraft")),
                 "This is a World of Warcraft LAN party. You should definitely come!",
                 MockUsers.mockUsers[2]
             ),
@@ -102,7 +102,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 10, 20, 0, 0),
                 10,
-                HashSet(Arrays.asList("Brawlhalla")),
+                HashSet(listOf("Brawlhalla")),
                 "This is a Brawlhalla LAN party. You should definitely come!",
                 MockUsers.mockUsers[3]
             ),
@@ -113,7 +113,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 2, 22, 21, 0, 0),
                 10,
-                HashSet(Arrays.asList("Fortnite", "Counter Strike")),
+                HashSet(listOf("Fortnite", "Counter Strike")),
                 "This is a LAN party for students. You should definitely come!",
                 MockUsers.mockUsers[3]
             ),
@@ -124,7 +124,7 @@ object MockLanParties {
                 "Graz",
                 GregorianCalendar(2023, 3, 1, 19, 0, 0),
                 10,
-                HashSet(Arrays.asList("Fortnite", "Minecraft", "Call of Duty")),
+                HashSet(listOf("Fortnite", "Minecraft", "Call of Duty")),
                 "This is an anonymous LAN party. You should definitely come!",
                 MockUsers.mockUsers[1]
             )

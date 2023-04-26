@@ -1,7 +1,6 @@
 package at.fhjoanneum.lanfinderkotlin.models
 
 import java.io.Serializable
-import java.util.Arrays
 import java.util.GregorianCalendar
 
 class LanParty : Serializable {
@@ -31,7 +30,7 @@ class LanParty : Serializable {
         this.city = city
         this.date = date
         this.amountMaxPlayers = amountMaxPlayers
-        registeredPlayers = HashSet(Arrays.asList(organizer))
+        registeredPlayers = HashSet(listOf(organizer))
         this.games = games
         this.description = description
         this.organizer = organizer
@@ -47,7 +46,7 @@ class LanParty : Serializable {
         this.city = city
         this.date = date
         this.amountMaxPlayers = amountMaxPlayers
-        registeredPlayers = HashSet(Arrays.asList(organizer))
+        registeredPlayers = HashSet(listOf(organizer))
         this.games = games
         this.description = description
         this.organizer = organizer

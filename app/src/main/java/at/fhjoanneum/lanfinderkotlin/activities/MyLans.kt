@@ -24,7 +24,7 @@ class MyLans : AppCompatActivity() {
 
         /*
          * Action Bar settings (set logo to action bar and back button)
-         */Objects.requireNonNull(supportActionBar).setDisplayShowHomeEnabled(true)
+         */Objects.requireNonNull(supportActionBar)!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.title = "My LAN's"
         supportActionBar!!.setDisplayUseLogoEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -33,7 +33,7 @@ class MyLans : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val listView = findViewById<ListView>(R.id.listview_myLans)
-        datasource = MockApiService.getLanPartiesForCurrentUser()
+        datasource = MockApiService.lanPartiesForCurrentUser as ArrayList<LanParty?>
         val adapter: ArrayAdapter<*> = MyLansAdapter(this, datasource)
         listView.adapter = adapter
         listView.onItemClickListener = OnItemClickListener { adapterView, view, position, id ->

@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
          *
          * Action Bar settings
          *
-         */Objects.requireNonNull(supportActionBar).setDisplayShowHomeEnabled(true)
+         */Objects.requireNonNull(supportActionBar)!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setLogo(R.drawable.ic_logo_actionbar)
         supportActionBar!!.setDisplayUseLogoEnabled(true)
     }
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val listView = findViewById<ListView>(R.id.listview_main)
-        datasource = MockApiService.getLanPartiesWhereCurrentUserIsNotSignedUpYet()
+        datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
         val adapter: ArrayAdapter<*> = MainAdapter(this, datasource)
         listView.adapter = adapter
         listView.onItemClickListener =
