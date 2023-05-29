@@ -120,11 +120,7 @@ class Info : AppCompatActivity() {
                     sendEmail(
                         arrayOf(selectedLanParty.organizer!!.email),
                         getString(R.string.new_player_mail) + " " + selectedLanParty.name,
-                        """A new player just joined your Lan party *${selectedLanParty.name}*. Please check your Lan party page for more information.
-
-${selectedLanParty.registeredPlayers!!.size + 1} / ${selectedLanParty.amountMaxPlayers} are now registered. 
-
-$playerText"""
+                        """A new player just joined your Lan party *${selectedLanParty.name}*. Please check your Lan party page for more information.${selectedLanParty.registeredPlayers!!.size + 1} / ${selectedLanParty.amountMaxPlayers} are now registered.$playerText"""
                     )
                     Toast.makeText(
                         this@Info,
@@ -162,11 +158,7 @@ $playerText"""
                     sendEmail(
                         receivers,
                         "The LAN party " + selectedLanParty.name + " has been deleted.",
-                        """
-                    Unfortunately, the LAN party *${selectedLanParty.name}* has been deleted. Please check your Lan party page for more information.
-                    
-                    
-                    """.trimIndent()
+                        """Unfortunately, the LAN party *${selectedLanParty.name}* has been deleted. Please check your Lan party page for more information.""".trimIndent()
                     )
                     Toast.makeText(
                         this@Info,
@@ -193,10 +185,7 @@ $playerText"""
                         arrayOf(selectedLanParty.organizer!!.email),
                         "A player of your LAN party " + " " + selectedLanParty.name + " has signed off.",
                         """The player ${MockApiService.currentUser!!.username} of your LAN party *${selectedLanParty.name}* has just signed off. Please check your Lan party page for more information.
-
-${selectedLanParty.registeredPlayers!!.size - 1} / ${selectedLanParty.amountMaxPlayers} are now registered. 
-
-"""
+                        ${selectedLanParty.registeredPlayers!!.size - 1} / ${selectedLanParty.amountMaxPlayers} are now registered. """
                     )
                     Toast.makeText(
                         this@Info,
