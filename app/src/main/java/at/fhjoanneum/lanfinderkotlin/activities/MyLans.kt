@@ -24,10 +24,14 @@ class MyLans : AppCompatActivity() {
 
         /*
          * Action Bar settings (set logo to action bar and back button)
-         */Objects.requireNonNull(supportActionBar)!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.title = "My LAN's"
-        supportActionBar!!.setDisplayUseLogoEnabled(true)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+         */
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            title = "My LAN's"
+            setDisplayUseLogoEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
     }
 
     override fun onStart() {

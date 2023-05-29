@@ -22,6 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.CreateLan"
+            android:label="Create Lan">
+        </activity>
+        <activity
+            android:name=".activities.Info"
+            android:label="Info">
+        </activity>
+        <activity
+            android:name=".activities.MyLans"
+            android:label="MyLans">
+        </activity>
     </application>
 
 </manifest>

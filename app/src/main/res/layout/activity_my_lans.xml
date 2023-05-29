@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:name="at.fhjoanneum.lanfinder.fragments.BurgerMenu"
+        android:name="at.fhjoanneum.lanfinderkotlin.fragments.BurgerMenu"
         tools:layout="@layout/fragment_burger_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

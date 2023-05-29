@@ -24,12 +24,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /*
-         *
          * Action Bar settings
-         *
-         */Objects.requireNonNull(supportActionBar)!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.setLogo(R.drawable.ic_logo_actionbar)
-        supportActionBar!!.setDisplayUseLogoEnabled(true)
+         */
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            setLogo(R.drawable.ic_logo_actionbar)
+            setDisplayUseLogoEnabled(true)
+        }
     }
 
     override fun onStart() {

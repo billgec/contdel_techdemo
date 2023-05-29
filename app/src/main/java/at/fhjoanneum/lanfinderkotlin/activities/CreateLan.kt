@@ -38,20 +38,18 @@ class CreateLan : AppCompatActivity() {
         setContentView(R.layout.activity_create)
 
         /*
-         *
          * Action Bar settings (set logo to action bar and back button)
-         *
          */
-        Objects.requireNonNull(supportActionBar)!!.setDisplayShowHomeEnabled(true)
-        supportActionBar!!.title = "Create a LAN Party"
-        supportActionBar!!.setDisplayUseLogoEnabled(true)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            title = "Create a LAN Party"
+            setDisplayUseLogoEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
 
         /*
-         *
          * Get the date and time from the date/time picker
-         *
          */
         val et_date = findViewById<EditText>(R.id.et_date)
         val c = GregorianCalendar()
@@ -92,9 +90,7 @@ class CreateLan : AppCompatActivity() {
         }
 
         /*
-         *
          * Custom Spinner
-         *
          */
         val checkedGame = BooleanArray(Arrays.asList(*resources.getStringArray(R.array.games)).size)
         val tv_games = findViewById<TextView>(R.id.tv_games)
@@ -141,10 +137,9 @@ class CreateLan : AppCompatActivity() {
         }
 
         /*
-         *
          * Create a new LAN
-         *
-         */findViewById<View>(R.id.btn_create).setOnClickListener(object : View.OnClickListener {
+         */
+        findViewById<View>(R.id.btn_create).setOnClickListener(object : View.OnClickListener {
             //initialize variables
             val et_name = findViewById<EditText>(R.id.et_name)
             val et_plz = findViewById<EditText>(R.id.et_plz)
@@ -200,9 +195,7 @@ class CreateLan : AppCompatActivity() {
     }
 
     /*
-     *
      * Action Bar settings (back button)
-     *
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId

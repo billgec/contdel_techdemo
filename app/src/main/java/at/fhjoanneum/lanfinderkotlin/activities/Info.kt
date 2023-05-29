@@ -35,23 +35,20 @@ class Info : AppCompatActivity() {
         val selectedLanParty = bundle!!.getSerializable("selectedLanParty") as LanParty?
 
         /*
-         *
          * Action Bar settings (set logo to action bar and back button)
-         *
          */
-        //Objects.requireNonNull(supportActionBar).setDisplayShowHomeEnabled(true)
-        supportActionBar!!.title = selectedLanParty!!.name
-        supportActionBar!!.setDisplayUseLogoEnabled(true)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.apply {
+            setDisplayShowHomeEnabled(true)
+            setLogo(R.drawable.ic_logo_actionbar)
+            setDisplayUseLogoEnabled(true)
+        }
 
         /*
-         *
          * Set the information from selected LAN to the textview
-         *
          */
-        val games = selectedLanParty.games
+        val games = selectedLanParty?.games
         val gamesString = StringBuilder()
-        for (game in games) {
+        for (game in games!!) {
             if (game == games.toTypedArray()[games.size - 1]) {
                 gamesString.append(game)
             } else {
@@ -88,9 +85,7 @@ class Info : AppCompatActivity() {
         }
 
         /*
-         *
          * Set the onClickListener for the button
-         *
          */
         val currentUser = MockApiService.currentUser
         if (selectedLanParty.registeredPlayers!!.stream()
@@ -200,9 +195,7 @@ class Info : AppCompatActivity() {
     }
 
     /*
-     *
      * Action Bar settings (back button)
-     *
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId

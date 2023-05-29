@@ -249,7 +249,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
-        android:name="at.fhjoanneum.lanfinder.fragments.BurgerMenu"
+        android:name="at.fhjoanneum.lanfinderkotlin.fragments.BurgerMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
