@@ -54,11 +54,9 @@ class MyLans : AppCompatActivity() {
      * Action Bar settings (back button)
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
+        val id = item.itemId
+        if (id == android.R.id.home) {
+            finish()
         }
         return super.onOptionsItemSelected(item)
     }

@@ -41,6 +41,7 @@ class Info : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
             setLogo(R.drawable.ic_logo_actionbar)
             setDisplayUseLogoEnabled(true)
+           setDisplayHomeAsUpEnabled(true)
         }
 
         /*
@@ -130,9 +131,7 @@ class Info : AppCompatActivity() {
         }
 
         /*
-         *
          * make delete/sign down button
-         *
          */
         if (selectedLanParty.organizer!!.id == currentUser!!.id) { //is creator
             findViewById<View>(R.id.icon_delete).setOnClickListener { v: View? ->
