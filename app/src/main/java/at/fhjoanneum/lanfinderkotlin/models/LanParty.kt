@@ -14,6 +14,8 @@ class LanParty : Serializable {
     var games: HashSet<String>
     var description: String
     var organizer: User?
+    var latitude: Double? = null
+    var longitude: Double? = null
 
     constructor(
         name: String,
@@ -23,7 +25,9 @@ class LanParty : Serializable {
         amountMaxPlayers: Int,
         games: HashSet<String>,
         description: String,
-        organizer: User?
+        organizer: User?,
+        latitude: Double? = null,
+        longitude: Double? = null
     ) {
         this.name = name
         this.zipCode = zipCode
@@ -34,6 +38,8 @@ class LanParty : Serializable {
         this.games = games
         this.description = description
         this.organizer = organizer
+        this.latitude = latitude
+        this.longitude = longitude
     }
 
     constructor(
