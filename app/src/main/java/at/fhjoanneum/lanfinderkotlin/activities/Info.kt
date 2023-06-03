@@ -124,7 +124,7 @@ class Info : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
-                    Toast.makeText(this@Info, "This LAN is already full!", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@Info, getString(R.string.this_lan_is_already_full), Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -136,9 +136,9 @@ class Info : AppCompatActivity() {
         if (selectedLanParty.organizer!!.id == currentUser!!.id) { //is creator
             findViewById<View>(R.id.icon_delete).setOnClickListener { v: View? ->
                 val builder = AlertDialog.Builder(this@Info)
-                builder.setTitle("Delete LAN")
-                builder.setMessage("Are you sure you want to delete this LAN?")
-                builder.setPositiveButton("Delete") { dialog: DialogInterface?, which: Int ->
+                builder.setTitle(getString(R.string.delete_lan))
+                builder.setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_lan))
+                builder.setPositiveButton(getString(R.string.delete)) { dialog: DialogInterface?, which: Int ->
                     val deleteIntent = Intent(this@Info, MainActivity::class.java)
                     startActivity(deleteIntent)
                     val receivers =
@@ -160,15 +160,15 @@ class Info : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-                builder.setNegativeButton("No") { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+                builder.setNegativeButton(getString(R.string.no)) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
                 builder.show()
             }
         } else { //is not creator
             findViewById<View>(R.id.icon_delete).setOnClickListener { v: View? ->
                 val builder = AlertDialog.Builder(this@Info)
-                builder.setTitle("Delete LAN")
-                builder.setMessage("Are you sure you want to sign off of this LAN?")
-                builder.setPositiveButton("Sign off") { dialog: DialogInterface?, which: Int ->
+                builder.setTitle(getString(R.string.delete_lan))
+                builder.setMessage(getString(R.string.are_you_sure_you_want_to_sign_off_of_this_lan))
+                builder.setPositiveButton(getString(R.string.sign_off)) { dialog: DialogInterface?, which: Int ->
                     val deleteIntent = Intent(this@Info, MainActivity::class.java)
                     startActivity(deleteIntent)
                     MockApiService.removeUserFromLanParty(
@@ -187,7 +187,7 @@ class Info : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-                builder.setNegativeButton("No") { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+                builder.setNegativeButton(getString(R.string.no)) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
                 builder.show()
             }
         }

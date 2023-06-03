@@ -42,7 +42,7 @@ class CreateLan : AppCompatActivity() {
          */
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
-            title = "Create a LAN Party"
+            title = getString(R.string.create_lan_party)
             setDisplayUseLogoEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }
@@ -97,7 +97,7 @@ class CreateLan : AppCompatActivity() {
         val selectedGames = ArrayList<Int>()
         tv_games.setOnClickListener { v: View? ->
             val builder = AlertDialog.Builder(this@CreateLan)
-            builder.setTitle("Choose games")
+            builder.setTitle(getString(R.string.choose_games))
             builder.setCancelable(false)
             builder.setMultiChoiceItems(
                 R.array.games,
@@ -110,7 +110,7 @@ class CreateLan : AppCompatActivity() {
                     selectedGames.remove(Integer.valueOf(i))
                 }
             }
-            builder.setPositiveButton("OK") { dialog: DialogInterface?, i: Int ->
+            builder.setPositiveButton(getString(R.string.ok)) { dialog: DialogInterface?, i: Int ->
                 val stringbuilder = StringBuilder()
                 for (j in selectedGames.indices) {
                     stringbuilder.append(resources.getStringArray(R.array.games)[selectedGames[j]])
@@ -125,8 +125,8 @@ class CreateLan : AppCompatActivity() {
                 //set text on text view
                 tv_games.text = stringbuilder.toString()
             }
-            builder.setNegativeButton("Cancel") { dialog: DialogInterface, i: Int -> dialog.dismiss() }
-            builder.setNeutralButton("Clear all") { dialog: DialogInterface?, i: Int ->
+            builder.setNegativeButton(getString(R.string.cancel)) { dialog: DialogInterface, i: Int -> dialog.dismiss() }
+            builder.setNeutralButton(getString(R.string.clear_all)) { dialog: DialogInterface?, i: Int ->
                 for (j in checkedGame.indices) {
                     checkedGame[j] = false
                     selectedGames.clear()
@@ -151,22 +151,22 @@ class CreateLan : AppCompatActivity() {
             //validate inputs
             override fun onClick(v: View) {
                 if (et_name.text.toString().isEmpty()) {
-                    et_name.error = "Please enter a name!"
+                    et_name.error = getString(R.string.enter_name)
                 } else if (et_plz.text.toString().isEmpty()) {
-                    et_plz.error = "Please enter a postal code!"
+                    et_plz.error = getString(R.string.enter_postal_code)
                 } else if (et_city.text.toString().isEmpty()) {
-                    et_city.error = "Please enter a city!"
+                    et_city.error = getString(R.string.enter_city)
                 } else if (et_maxPlayers.text.toString().isEmpty()) {
-                    et_maxPlayers.error = "Please enter a maximum number of players!"
+                    et_maxPlayers.error = getString(R.string.enter_max_players)
                 } else if (et_date.text.toString().length != 16) {
-                    et_date.error = "Please select a date and time!"
+                    et_date.error = getString(R.string.select_date_and_time)
                 } else if (tv_games.text.toString().isEmpty()) {
-                    tv_error_games.error = "Please select a game!"
+                    tv_error_games.error = getString(R.string.select_a_game)
                 } else {
                     val builder = AlertDialog.Builder(this@CreateLan)
-                    builder.setTitle("Create LAN")
-                    builder.setMessage("Do you want to create this LAN?")
-                    builder.setPositiveButton("Create") { dialog: DialogInterface?, which: Int ->
+                    builder.setTitle(getString(R.string.create_lan))
+                    builder.setMessage(getString(R.string.do_you_want_to_create_this_lan))
+                    builder.setPositiveButton(getString(R.string.create)) { dialog: DialogInterface?, which: Int ->
                         MockApiService.createLanParty(LanParty(
                             et_name.text.toString(),
                             et_plz.text.toString(),
@@ -184,10 +184,10 @@ class CreateLan : AppCompatActivity() {
                             MockApiService.currentUser))
                         //make a Toast if creation was successful and go back to MainActivity
                         val intent = Intent(this@CreateLan, MainActivity::class.java)
-                        Toast.makeText(this@CreateLan, "LAN created", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CreateLan, getString(R.string.lan_created), Toast.LENGTH_SHORT).show()
                         startActivity(intent)
                     }
-                    builder.setNegativeButton("No") { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+                    builder.setNegativeButton(getString(R.string.no)) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
                     builder.show()
                 }
             }

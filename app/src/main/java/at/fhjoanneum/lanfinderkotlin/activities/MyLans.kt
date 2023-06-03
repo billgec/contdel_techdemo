@@ -27,7 +27,7 @@ class MyLans : AppCompatActivity() {
          */
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
-            title = "My LAN's"
+            title = getString(R.string.my_lans)
             setDisplayUseLogoEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }
