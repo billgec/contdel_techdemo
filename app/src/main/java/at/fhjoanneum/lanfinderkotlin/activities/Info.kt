@@ -19,7 +19,6 @@ import at.fhjoanneum.lanfinderkotlin.models.User
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
 import java.util.Calendar
 import java.util.GregorianCalendar
-import java.util.Objects
 import java.util.stream.Collectors
 
 /**
@@ -106,21 +105,10 @@ class Info : AppCompatActivity() {
                         MockUsers.mockUsers[5],
                         selectedLanParty.id
                     )
-                    val etDescription = findViewById<EditText>(R.id.et_description)
-                    val playerText: String
-                    playerText = if (etDescription.text.toString().isEmpty()) {
-                        ""
-                    } else {
-                        "The player left you a message: " + etDescription.text.toString()
-                    }
-                    sendEmail(
-                        arrayOf(selectedLanParty.organizer!!.email),
-                        getString(R.string.new_player_mail) + " " + selectedLanParty.name,
-                        """A new player just joined your Lan party *${selectedLanParty.name}*. Please check your Lan party page for more information.${selectedLanParty.registeredPlayers!!.size + 1} / ${selectedLanParty.amountMaxPlayers} are now registered.$playerText"""
-                    )
+                    //val etDescription = findViewById<EditText>(R.id.et_description) todo remove or add notification
                     Toast.makeText(
                         this@Info,
-                        "Signed up successfully! If your mail app pops up, press SEND.",
+                        getString(R.string.signed_up_successfully),
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -149,14 +137,9 @@ class Info : AppCompatActivity() {
                         counter++
                     }
                     MockApiService.deleteLanParty(selectedLanParty.id)
-                    sendEmail(
-                        receivers,
-                        "The LAN party " + selectedLanParty.name + " has been deleted.",
-                        """Unfortunately, the LAN party *${selectedLanParty.name}* has been deleted. Please check your Lan party page for more information.""".trimIndent()
-                    )
                     Toast.makeText(
                         this@Info,
-                        "Lan party deleted successfully! If your mail app pops up, press SEND.",
+                        getString(R.string.lan_party_deleted_successfully),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -175,15 +158,9 @@ class Info : AppCompatActivity() {
                         MockApiService.currentUser,
                         selectedLanParty.id
                     )
-                    sendEmail(
-                        arrayOf(selectedLanParty.organizer!!.email),
-                        "A player of your LAN party " + " " + selectedLanParty.name + " has signed off.",
-                        """The player ${MockApiService.currentUser!!.username} of your LAN party *${selectedLanParty.name}* has just signed off. Please check your Lan party page for more information.
-                        ${selectedLanParty.registeredPlayers!!.size - 1} / ${selectedLanParty.amountMaxPlayers} are now registered. """
-                    )
                     Toast.makeText(
                         this@Info,
-                        "Signed off successfully! If your mail app pops up, press SEND.",
+                        getString(R.string.signed_off_successfully),
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -202,21 +179,5 @@ class Info : AppCompatActivity() {
             finish()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    fun sendEmail(to: Array<String?>, subject: String, message: String) {
-        //open default mail app with prefilled receiver, subject and message
-        val selectorIntent = Intent(Intent.ACTION_SENDTO)
-        selectorIntent.data = Uri.parse("mailto:")
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.addCategory(Intent.CATEGORY_APP_EMAIL)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        intent.putExtra(Intent.EXTRA_TEXT, message)
-        intent.putExtra(Intent.EXTRA_EMAIL, to)
-        intent.selector = selectorIntent
-        startActivity(intent)
-        val s = "Email sent to $to with subject $subject and message $message"
-        println(s)
     }
 }

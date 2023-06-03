@@ -1,132 +1,168 @@
-package at.fhjoanneum.lanfinderkotlin.mockdata
+package at.fhjoanneum.lanfinderkotlin.service
 
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import java.util.GregorianCalendar
+import at.fhjoanneum.lanfinderkotlin.restapi.api.model.LanParty
+import com.google.firebase.database.DatabaseReference
+import java.util.*
 
-object MockLanParties {
-    var mockLanParties = ArrayList(
-        listOf(
-            LanParty(
-                1,
+class LanPartyService {
+
+    private lateinit var dbRef: DatabaseReference
+
+    private val lanPartyList: MutableList<LanParty>
+
+    init {
+        lanPartyList = ArrayList()
+
+        val party1 = LanParty(
+                "1",
                 "Best LAN Party in Graz",
                 "8010",
                 "Graz",
                 GregorianCalendar(2023, 1, 20, 16, 0, 0),
                 10,
-                HashSet(listOf("Battlefield", "Team Fortress")),
                 "This is the best LAN Party in Graz. You should definitely come!",
-                MockUsers.mockUsers[0]
-            ),
-            LanParty(
-                2,
+                0,
+                listOf("Battlefield", "Team Fortress"),
+        )
+
+        val party2 = LanParty(
+                "2",
                 "Battlefield LAN party",
                 "8010",
                 "Graz",
                 GregorianCalendar(2023, 2, 5, 20, 0, 0),
                 4,
-                HashSet(listOf("Battlefield")),
                 "This is a Battlefield LAN party. You should definitely come!",
-                MockUsers.mockUsers[0]
-            ),
-            LanParty(
-                3,
+                1,
+                listOf("Battlefield"),
+                listOf()
+        )
+        val party3 = LanParty(
+                "3",
                 "Hand Simulator party",
                 "8020",
                 "Graz",
                 GregorianCalendar(2023, 2, 6, 19, 0, 0),
                 15,
-                HashSet(listOf("Hand Simulator")),
                 "This is a Hand simulator LAN party. You should definitely come!",
-                MockUsers.mockUsers[1]
-            ),
-            LanParty(
-                4,
+                2,
+                listOf("Hand Simulator"),
+                listOf()
+        )
+
+        val party4 = LanParty(
+                "4",
                 "This is the best lan party on Earth. If you have another opinion, I don't care.",
                 "8020",
                 "Graz",
                 GregorianCalendar(2023, 2, 18, 19, 0, 0),
                 10,
-                HashSet(listOf("Battlefield")),
                 "This is a Battlefield LAN party. You should definitely come!",
-                MockUsers.mockUsers[2]
-            ),
-            LanParty(
-                5,
+                3,
+                listOf("Battlefield"),
+                listOf()
+        )
+
+        val party5 = LanParty(
+                "5",
                 "League of Legends in Graz",
                 "8020",
                 "Graz",
                 GregorianCalendar(2023, 1, 18, 19, 0, 0),
                 8,
-                HashSet(listOf("League of Legends")),
                 "This is a League of Legends LAN party. You should definitely come!",
-                MockUsers.mockUsers[3]
-            ),
-            LanParty(
-                6,
+                4,
+                listOf("League of Legends"),
+                listOf()
+        )
+
+        val party6 = LanParty(
+                "6",
                 "GTFO",
                 "8010",
                 "Graz",
                 GregorianCalendar(2023, 1, 19, 18, 0, 0),
                 15,
-                HashSet(listOf("GTFO")),
                 "This is a GTFO LAN party. You should definitely come!",
-                MockUsers.mockUsers[4]
-            ),
-            LanParty(
-                7,
+                5,
+                listOf("GTFO"),
+                listOf()
+        )
+
+        val party7 = LanParty(
+                "7",
                 "Rogue Company Party",
                 "8010",
                 "Graz",
                 GregorianCalendar(2023, 2, 13, 19, 0, 0),
                 5,
-                HashSet(listOf("Rogue Company")),
                 "This is a Rogue Company LAN party. You should definitely come!",
-                MockUsers.mockUsers[4]
-            ),
-            LanParty(
-                8,
+                6,
+                listOf("Rogue Company"),
+                listOf()
+        )
+
+        val party8 = LanParty(
+                "8",
                 "World of Warcraft Lan Party",
                 "8010",
                 "Graz",
                 GregorianCalendar(2023, 2, 10, 20, 0, 0),
                 10,
-                HashSet(listOf("World of Warcraft")),
                 "This is a World of Warcraft LAN party. You should definitely come!",
-                MockUsers.mockUsers[2]
-            ),
-            LanParty(
-                9,
+                7,
+                listOf("World of Warcraft"),
+                listOf()
+        )
+
+        val party9 = LanParty(
+                "9",
                 "Brawlhalla",
                 "8020",
                 "Graz",
                 GregorianCalendar(2023, 2, 10, 20, 0, 0),
                 10,
-                HashSet(listOf("Brawlhalla")),
                 "This is a Brawlhalla LAN party. You should definitely come!",
-                MockUsers.mockUsers[3]
-            ),
-            LanParty(
-                10,
+                8,
+                listOf("Brawlhalla"),
+                listOf()
+        )
+
+        val party10 = LanParty(
+                "10",
                 "LAN party for students",
                 "8020",
                 "Graz",
                 GregorianCalendar(2023, 2, 22, 21, 0, 0),
                 10,
-                HashSet(listOf("Fortnite", "Counter Strike")),
                 "This is a LAN party for students. You should definitely come!",
-                MockUsers.mockUsers[3]
-            ),
-            LanParty(
-                11,
+                9,
+                listOf("Fortnite", "Counter Strike"),
+                listOf()
+        )
+
+        val party11 = LanParty(
+                "11",
                 "The LAN party without a name",
                 "8020",
                 "Graz",
                 GregorianCalendar(2023, 3, 1, 19, 0, 0),
                 10,
-                HashSet(listOf("Fortnite", "Minecraft", "Call of Duty")),
                 "This is an anonymous LAN party. You should definitely come!",
-                MockUsers.mockUsers[1]
-            )
+                10,
+                listOf("Fortnite", "Minecraft", "Call of Duty"),
+                listOf()
         )
-    )
+
+        lanPartyList.addAll(listOf(party1, party2, party3, party4, party5, party6, party7, party8, party9, party10,party11))
+    }
+
+    fun getLanParty(id: String): Optional<LanParty> {
+        for (LanParty in lanPartyList) {
+            if (id.equals(LanParty.id)) {
+                return Optional.of(LanParty)
+            }
+        }
+        return Optional.empty()
+    }
 }
