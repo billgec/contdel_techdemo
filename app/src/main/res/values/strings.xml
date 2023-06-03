@@ -36,4 +36,7 @@
     <string name="my_lans">My LAN\'s</string>
     <string name="are_you_sure_you_want_to_delete_this_lan">Are you sure you want to delete this LAN?</string>
     <string name="delete">Delete</string>
+    <string name="signed_up_successfully">Signed up successfully!</string>
+    <string name="lan_party_deleted_successfully">Lan party deleted successfully!</string>
+    <string name="signed_off_successfully">Signed off successfully!</string>
 </resources>
