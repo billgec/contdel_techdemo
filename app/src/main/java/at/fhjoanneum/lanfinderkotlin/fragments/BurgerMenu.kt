@@ -13,10 +13,11 @@ import at.fhjoanneum.lanfinderkotlin.activities.MyLans
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BurgerMenu : Fragment() {
-    var fab: FloatingActionButton? = null
+    private var fab: FloatingActionButton? = null
     private var my_lans_fab: FloatingActionButton? = null
     private var create_lan_fab: FloatingActionButton? = null
-    var isBurgerMenuOpen = false
+    private var isBurgerMenuOpen = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +32,7 @@ class BurgerMenu : Fragment() {
         create_lan_fab?.hide()
         isBurgerMenuOpen = false
         fab?.setOnClickListener { listenerView ->
+
             val icon: Int
             if (!isBurgerMenuOpen) {
                 my_lans_fab?.show()
@@ -55,8 +57,10 @@ class BurgerMenu : Fragment() {
          * forward to CreateLan activity
          */
         create_lan_fab?.setOnClickListener { listenerView ->
-            val intent = Intent(activity, CreateLan::class.java)
-            startActivity(intent)
+            view?.post {
+                val intent = Intent(activity, CreateLan::class.java)
+                startActivity(intent)
+            }
         }
 
         /*
