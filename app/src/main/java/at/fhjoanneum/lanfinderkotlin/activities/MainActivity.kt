@@ -12,13 +12,13 @@ import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
 import at.fhjoanneum.lanfinderkotlin.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
-import java.util.Objects
 
 /**
  * This activity shows all lans the user can sign up for.
  */
 class MainActivity : AppCompatActivity() {
     var datasource: ArrayList<LanParty?>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

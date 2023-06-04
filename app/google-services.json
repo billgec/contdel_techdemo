@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831331187767",
+    "project_id": "lanparty-e47c5",
+    "storage_bucket": "lanparty-e47c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831331187767:android:ddc77271a7b005181693b2",
+        "android_client_info": {
+          "package_name": "at.fhjoanneum.lanfinderkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831331187767-m8bchb28tr80nuftuueredu47f2h7hct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3xI--dYJbDpVE2JWqttXi1nOTaYiaW4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831331187767-m8bchb28tr80nuftuueredu47f2h7hct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name_your_lan_party">Benenne deine Lan Party!</string>
+    <string name="enter_your_location">Stadt</string>
+    <string name="enter_date_time">Gib bitte ein Datum und eine Uhrzeit ein</string>
+    <string name="max_players">max. Spieler</string>
+    <string name="select_game">Wähle ein Spiel aus</string>
+    <string name="create">Erstellen</string>
+    <string name="description">Beschreibung (optional)</string>
+    <string name="plz">Postleitzahl</string>
+    <string name="sign_up">Registrieren</string>
+    <string name="write_a_message">Schreibe eine Nachricht</string>
+    <string name="new_player_mail">Ein neuer Spieler ist deiner Lan Party beigetreten</string>
+    <string name="placeholder">Platzhalter</string>
+    <string name="create_lan_party">Erstelle eine LAN Party</string>
+    <string name="choose_games">Wähle Spiele aus</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="clear_all">Alle entfernen</string>
+    <string name="enter_name">Gib bitte einen Namen ein!</string>
+    <string name="enter_postal_code">Gib bitte eine Postleitzahl ein!</string>
+    <string name="enter_city">Gib bitte eine Stadt ein!</string>
+    <string name="enter_max_players">Gib bitte eine maximale Spieleranzahl ein!</string>
+    <string name="select_date_and_time">Wähle bitte Datum und Uhrzeit aus!</string>
+    <string name="select_a_game">Wähle bitte ein Spiel aus!</string>
+    <string name="create_lan">LAN Party erstellen</string>
+    <string name="do_you_want_to_create_this_lan">Möchtest du diese LAN Party erstellen?</string>
+    <string name="lan_created">LAN Party erstellt</string>
+    <string name="no">Nein</string>
+    <string name="this_lan_is_already_full">Diese LAN Party ist schon voll!</string>
+    <string name="delete_lan">LAN Party löschen</string>
+    <string name="are_you_sure_you_want_to_sign_off_of_this_lan">Bist du dir sicher, dass du dich von dieser LAN Party abmelden möchtest?</string>
+    <string name="sign_off">Abmelden</string>
+    <string name="my_lans">Meine LANs</string>
+    <string name="are_you_sure_you_want_to_delete_this_lan">Bist du sicher, dass du diese LAN Party löschen möchtest?</string>
+    <string name="delete">Löschen</string>
+    <string name="signed_up_successfully">Erfolgreich angemeldet!</string>
+    <string name="lan_party_deleted_successfully">LAN Party erfolgreich gelöscht!</string>
+    <string name="signed_off_successfully">Erfolgreich abgemeldet!</string>
+</resources>

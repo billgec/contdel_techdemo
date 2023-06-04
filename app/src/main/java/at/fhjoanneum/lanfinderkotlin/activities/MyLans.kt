@@ -11,7 +11,6 @@ import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MyLansAdapter
 import at.fhjoanneum.lanfinderkotlin.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
-import java.util.Objects
 
 /**
  * This activity shows all lans the user is a member of.
@@ -27,7 +26,7 @@ class MyLans : AppCompatActivity() {
          */
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
-            title = "My LAN's"
+            title = getString(R.string.my_lans)
             setDisplayUseLogoEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }

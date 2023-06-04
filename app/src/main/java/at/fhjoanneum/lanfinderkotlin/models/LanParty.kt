@@ -4,7 +4,7 @@ import java.io.Serializable
 import java.util.GregorianCalendar
 
 class LanParty : Serializable {
-    var id = 0
+    var id = "-1"
     var name: String
     var zipCode: String
     var city: String

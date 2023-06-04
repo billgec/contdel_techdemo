@@ -22,12 +22,12 @@ object MockApiService {
     }
 
     fun createLanParty(lanParty: LanParty): Boolean {
-        lanParty.id = MockLanParties.mockLanParties.size + 1
+        lanParty.id = (MockLanParties.mockLanParties.size + 1).toString()
         MockLanParties.mockLanParties.add(lanParty)
         return true
     }
 
-    fun addUserToLanParty(user: User?, lanPartyId: Int) {
+    fun addUserToLanParty(user: User?, lanPartyId: String) {
         val mockLanParty = MockLanParties.mockLanParties.stream()
             .filter { x: LanParty? -> x!!.id == lanPartyId }
             .collect(Collectors.toList())[0]
@@ -59,7 +59,7 @@ object MockApiService {
     val currentUser: User?
         get() = MockUsers.mockUsers[5]
 
-    fun removeUserFromLanParty(user: User?, selectedLanPartyId: Int) {
+    fun removeUserFromLanParty(user: User?, selectedLanPartyId: String) {
         val mockLanParty = MockLanParties.mockLanParties.stream()
             .filter { x: LanParty? -> x!!.id == selectedLanPartyId }
             .collect(Collectors.toList())[0]
@@ -68,7 +68,7 @@ object MockApiService {
         mockLanParty.registeredPlayers = currentRegisteredPlayers
     }
 
-    fun deleteLanParty(lanPartyId: Int) {
+    fun deleteLanParty(lanPartyId: String) {
         val mockLanParty = MockLanParties.mockLanParties.stream()
             .filter { x: LanParty? -> x!!.id == lanPartyId }
             .collect(Collectors.toList())[0]
