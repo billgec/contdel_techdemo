@@ -1,23 +1,32 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import com.google.android.gms.location.LocationServices
 import java.util.Arrays
 import java.util.Calendar
 import java.util.Collections
@@ -32,6 +41,7 @@ class CreateLan : AppCompatActivity() {
     private var datePickerDialog: DatePickerDialog? = null
     private var timePickerDialog: TimePickerDialog? = null
     var calendarSet: GregorianCalendar? = null
+    private val LOCATION_PERMISSION_REQUEST_CODE = 123
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,6 +144,11 @@ class CreateLan : AppCompatActivity() {
                 }
             }
             builder.show()
+
+            val locationSwitch = findViewById<SwitchCompat>(R.id.locationSwitch)
+            if(locationSwitch.isChecked){
+                checkLocationPermission()
+            }
         }
 
         /*
@@ -204,4 +219,60 @@ class CreateLan : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    /*
+     * Get the current location of the user
+     */
+    private fun checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            // Permission is already granted, proceed with accessing the location
+            getCurrentLocation()
+        }
+    }
+
+    private fun getCurrentLocation() {
+        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        fusedLocationProviderClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                // Location is retrieved successfully
+                if (location != null) {
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+
+                    // Speichere die GPS-Daten oder füge sie zur LAN-Party hinzu
+                } else {
+                    // Location is null, handle the case when location is not available
+                }
+            }
+            .addOnFailureListener { exception: Exception ->
+                // Failed to retrieve location, handle the error
+            }
+    }
+
 }

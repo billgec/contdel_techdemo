@@ -204,6 +204,10 @@ class Info : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+
+    /*
+     * Send email (prototype, delete/rewrite on demand)
+     */
     fun sendEmail(to: Array<String?>, subject: String, message: String) {
         //open default mail app with prefilled receiver, subject and message
         val selectorIntent = Intent(Intent.ACTION_SENDTO)

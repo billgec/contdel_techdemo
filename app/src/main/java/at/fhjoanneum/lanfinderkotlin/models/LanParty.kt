@@ -43,8 +43,15 @@ class LanParty : Serializable {
     }
 
     constructor(
-        id: Int, name: String, zipCode: String, city: String, date: GregorianCalendar?,
-        amountMaxPlayers: Int, games: HashSet<String>, description: String, organizer: User?
+        id: Int,
+        name: String,
+        zipCode: String,
+        city: String,
+        date: GregorianCalendar?,
+        amountMaxPlayers: Int,
+        games: HashSet<String>,
+        description: String,
+        organizer: User?
     ) {
         this.id = id
         this.name = name
