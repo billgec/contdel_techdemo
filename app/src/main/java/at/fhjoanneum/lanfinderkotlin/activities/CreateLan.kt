@@ -35,6 +35,9 @@ class CreateLan : AppCompatActivity() {
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            NetworkUtils.openNetworkErrorDialog(this)
+        }
         setContentView(R.layout.activity_create)
 
         /*
