@@ -65,14 +65,12 @@ class MainActivity : AppCompatActivity() {
         // Customize the dialog attributes as desired
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
-        // Disable the overlapped view
-        dialog.window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+        // Set the dialog as modal to block the view behind
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
 
         // Show the dialog
         dialog.show()
-
-        // Clear the not focusable flag to enable interaction with the dialog
-        dialog.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
     }
 
     fun isNetworkConnected(): Boolean {
