@@ -32,14 +32,19 @@ class CreateLan : AppCompatActivity() {
     private var datePickerDialog: DatePickerDialog? = null
     private var timePickerDialog: TimePickerDialog? = null
     var calendarSet: GregorianCalendar? = null
-    @SuppressLint("SetTextI18n", "DefaultLocale")
+
+
+    @SuppressLint("SetTextI18n", "DefaultLocale", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_create)
+        val btnCreate = findViewById<View>(R.id.btn_create)
+
         if (!NetworkUtils.isNetworkConnected(this)) {
             NetworkUtils.openNetworkErrorDialog(this)
+            btnCreate.isEnabled = false
+            btnCreate.alpha = 0.2f
         }
-        setContentView(R.layout.activity_create)
-
         /*
          * Action Bar settings (set logo to action bar and back button)
          */
@@ -142,7 +147,8 @@ class CreateLan : AppCompatActivity() {
         /*
          * Create a new LAN
          */
-        findViewById<View>(R.id.btn_create).setOnClickListener(object : View.OnClickListener {
+
+        btnCreate.setOnClickListener(object : View.OnClickListener {
             //initialize variables
             val et_name = findViewById<EditText>(R.id.et_name)
             val et_plz = findViewById<EditText>(R.id.et_plz)
