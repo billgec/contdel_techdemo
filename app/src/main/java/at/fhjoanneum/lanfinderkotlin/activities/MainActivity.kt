@@ -1,24 +1,30 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
 import at.fhjoanneum.lanfinderkotlin.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
-import java.util.Objects
 
 /**
- * This activity shows all lans the user can sign up for.
+ * This activity shows all LANs the user can sign up for.
  */
 class MainActivity : AppCompatActivity() {
-    var datasource: ArrayList<LanParty?>? = null
+    private var datasource: ArrayList<LanParty?>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,18 +41,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            NetworkUtils.openNetworkErrorDialog(this)
+        }
+
         val listView = findViewById<ListView>(R.id.listview_main)
         datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
         val adapter: ArrayAdapter<*> = MainAdapter(this, datasource)
         listView.adapter = adapter
-        listView.onItemClickListener =
-            OnItemClickListener { adapterView: AdapterView<*>?, view: View?, position: Int, id: Long ->
-                val selectedItem = adapter.getItem(position) as LanParty?
-                val intent = Intent(applicationContext, Info::class.java)
-                val bundle = Bundle()
-                bundle.putSerializable("selectedLanParty", selectedItem)
-                intent.putExtras(bundle)
-                startActivity(intent)
-            }
+        listView.onItemClickListener = OnItemClickListener { _: AdapterView<*>, _: View?, position: Int, _: Long ->
+            val selectedItem = adapter.getItem(position) as LanParty?
+            val intent = Intent(applicationContext, Info::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("selectedLanParty", selectedItem)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
     }
 }
