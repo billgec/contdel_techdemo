@@ -37,4 +37,8 @@
     <string name="signed_up_successfully">Erfolgreich angemeldet!</string>
     <string name="lan_party_deleted_successfully">LAN Party erfolgreich gelöscht!</string>
     <string name="signed_off_successfully">Erfolgreich abgemeldet!</string>
+    <string name="retry_connection">neu verbinden</string>
+    <string name="offline">Offline bleiben</string>
+    <string name="offline_message_title">Keine Netzwerkverbindung!</string>
+    <string name="offline_message_description">Die Eventliste kann nicht upgedated werden. Um alle Funktionen uneingeschränkt nutzen zu können benötigt LanFinder eine Netzwerkverbindung. </string>
 </resources>
