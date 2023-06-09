@@ -21,6 +21,7 @@ class BurgerMenu : Fragment() {
     private var filter_lan_fab: FloatingActionButton? = null
     var isBurgerMenuOpen = false
     var isFiltered = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +43,11 @@ class BurgerMenu : Fragment() {
                 my_lans_fab?.show()
                 create_lan_fab?.show()
                 if (activity is MainActivity) {
+                    if (isFiltered) {
+                        filter_lan_fab?.setImageResource(R.drawable.ic_filter_clear)
+                    } else {
+                        filter_lan_fab?.setImageResource(R.drawable.ic_filter)
+                    }
                     filter_lan_fab?.show()
                 }
                 icon = R.drawable.ic_close

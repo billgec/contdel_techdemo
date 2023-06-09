@@ -195,8 +195,3 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:layout="@layout/fragment_burger_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-

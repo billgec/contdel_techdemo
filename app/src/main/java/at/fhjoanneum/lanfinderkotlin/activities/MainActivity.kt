@@ -1,17 +1,11 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
@@ -24,6 +18,11 @@ import at.fhjoanneum.lanfinderkotlin.services.MockApiService
  */
 class MainActivity : AppCompatActivity() {
     private var datasource: ArrayList<LanParty?>? = null
+    lateinit var name: String
+    lateinit var plz: String
+    lateinit var city: String
+    lateinit var maxPlayers: String
+    lateinit var errorGames: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +46,29 @@ class MainActivity : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.listview_main)
         datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
+
+        /**
+         * Update Filter
+         * */
+        if (intent != null) {
+            plz = intent.getStringExtra("plz").toString()
+            city = intent.getStringExtra("city").toString()
+            maxPlayers = intent.getStringExtra("maxPlayers").toString()
+            errorGames = intent.getStringExtra("errorGames").toString()
+
+            val newList = mutableListOf<LanParty>() // Use a mutable list instead of listOf<LanParty>()
+
+            for (lanParty in datasource!!) {
+                if (lanParty?.amountMaxPlayers == maxPlayers.toIntOrNull()) {
+                    newList.add(lanParty!!)
+                }
+            }
+            if (newList.isNotEmpty()) {
+                datasource = ArrayList(newList)
+            }
+        }
+
+
         val adapter: ArrayAdapter<*> = MainAdapter(this, datasource)
         listView.adapter = adapter
         listView.onItemClickListener = OnItemClickListener { _: AdapterView<*>, _: View?, position: Int, _: Long ->

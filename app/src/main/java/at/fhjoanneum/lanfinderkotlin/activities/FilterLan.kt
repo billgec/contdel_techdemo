@@ -13,16 +13,9 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
-import java.util.Arrays
-import java.util.Calendar
-import java.util.Collections
-import java.util.GregorianCalendar
-import java.util.Objects
+import java.util.*
 
 /**
  * This activity is used to create a new LAN.
@@ -31,25 +24,23 @@ class FilterLan : AppCompatActivity() {
     //instances for date and time picker
     private var datePickerDialog: DatePickerDialog? = null
     private var timePickerDialog: TimePickerDialog? = null
-    var calendarSet: GregorianCalendar? = null
-
+    private var calendarSet: GregorianCalendar? = null
 
     @SuppressLint("SetTextI18n", "DefaultLocale", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-        val btnCreate = findViewById<View>(R.id.btn_filter)
-        
+        val btnFilter = findViewById<View>(R.id.btn_filter)
+
         /*
          * Action Bar settings (set logo to action bar and back button)
          */
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
-            title = getString(R.string.create_lan_party)
+            title = getString(R.string.filter_title)
             setDisplayUseLogoEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }
-
 
         /*
          * Get the date and time from the date/time picker
@@ -142,58 +133,24 @@ class FilterLan : AppCompatActivity() {
         /*
          * Create a new LAN
          */
-
-        btnCreate.setOnClickListener(object : View.OnClickListener {
+        btnFilter.setOnClickListener(object : View.OnClickListener {
             //initialize variables
             val et_name = findViewById<EditText>(R.id.et_name)
             val et_plz = findViewById<EditText>(R.id.et_plz)
             val et_city = findViewById<EditText>(R.id.et_city)
             val et_maxPlayers = findViewById<EditText>(R.id.et_maxPlayers)
-            val et_description = findViewById<EditText>(R.id.et_description)
             val tv_error_games = findViewById<TextView>(R.id.tv_error_game)
 
             //validate inputs
             override fun onClick(v: View) {
-                if (et_name.text.toString().isEmpty()) {
-                    et_name.error = getString(R.string.enter_name)
-                } else if (et_plz.text.toString().isEmpty()) {
-                    et_plz.error = getString(R.string.enter_postal_code)
-                } else if (et_city.text.toString().isEmpty()) {
-                    et_city.error = getString(R.string.enter_city)
-                } else if (et_maxPlayers.text.toString().isEmpty()) {
-                    et_maxPlayers.error = getString(R.string.enter_max_players)
-                } else if (et_date.text.toString().length != 16) {
-                    et_date.error = getString(R.string.select_date_and_time)
-                } else if (tv_games.text.toString().isEmpty()) {
-                    tv_error_games.error = getString(R.string.select_a_game)
-                } else {
-                    val builder = AlertDialog.Builder(this@FilterLan)
-                    builder.setTitle(getString(R.string.create_lan))
-                    builder.setMessage(getString(R.string.do_you_want_to_create_this_lan))
-                    builder.setPositiveButton(getString(R.string.create)) { dialog: DialogInterface?, which: Int ->
-                        MockApiService.createLanParty(LanParty(
-                            et_name.text.toString(),
-                            et_plz.text.toString(),
-                            et_city.text.toString(),
-                            calendarSet,
-                            if (et_maxPlayers.text.toString()
-                                    .isEmpty()
-                            ) 0 else et_maxPlayers.text.toString().toInt(),
-                            HashSet(
-                                Arrays.asList(
-                                    *tv_games.text.toString().split(", ".toRegex())
-                                        .dropLastWhile { it.isEmpty() }
-                                        .toTypedArray())),
-                            et_description.text.toString(),
-                            MockApiService.currentUser))
-                        //make a Toast if creation was successful and go back to MainActivity
-                        val intent = Intent(this@FilterLan, MainActivity::class.java)
-                        Toast.makeText(this@FilterLan, getString(R.string.lan_created), Toast.LENGTH_SHORT).show()
-                        startActivity(intent)
-                    }
-                    builder.setNegativeButton(getString(R.string.no)) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
-                    builder.show()
-                }
+                val intent = Intent(this@FilterLan, MainActivity::class.java)
+
+                intent.putExtra("plz", et_plz.text.toString())
+                intent.putExtra("city", et_city.text.toString())
+                intent.putExtra("maxPlayers", et_maxPlayers.text.toString())
+                intent.putExtra("errorGames", tv_error_games.text.toString())
+
+                startActivity(intent)
             }
         })
     }
