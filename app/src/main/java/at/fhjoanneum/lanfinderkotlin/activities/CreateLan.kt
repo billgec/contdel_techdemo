@@ -14,7 +14,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Switch
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
@@ -22,14 +21,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.controller.LanPartyController
 import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.service.LanPartyService
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.android.gms.location.LocationServices
 import java.util.Arrays
 import java.util.Calendar
@@ -48,6 +43,9 @@ class CreateLan : AppCompatActivity() {
     private var timePickerDialog: TimePickerDialog? = null
     var calendarSet: GregorianCalendar? = null
     private val LOCATION_PERMISSION_REQUEST_CODE = 123
+    private var longitude: Double = 0.0
+    private var latitude: Double = 0.0
+
     @SuppressLint("SetTextI18n", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -172,6 +170,7 @@ class CreateLan : AppCompatActivity() {
             val et_maxPlayers = findViewById<EditText>(R.id.et_maxPlayers)
             val et_description = findViewById<EditText>(R.id.et_description)
             val tv_error_games = findViewById<TextView>(R.id.tv_error_game)
+            val locationSwitch = findViewById<SwitchCompat>(R.id.locationSwitch)
 
             //validate inputs
             override fun onClick(v: View) {
@@ -193,29 +192,39 @@ class CreateLan : AppCompatActivity() {
                     builder.setMessage(getString(R.string.do_you_want_to_create_this_lan))
                     builder.setPositiveButton(getString(R.string.create)) { dialog: DialogInterface?, which: Int ->
 
-                        var lanParty = LanParty(
-                            et_name.text.toString(),
-                            et_plz.text.toString(),
-                            et_city.text.toString(),
-                            calendarSet,
-                            if (et_maxPlayers.text.toString()
-                                    .isEmpty()
-                            ) 0 else et_maxPlayers.text.toString().toInt(),
-                            HashSet(
-                                Arrays.asList(
-                                    *tv_games.text.toString().split(", ".toRegex())
-                                        .dropLastWhile { it.isEmpty() }
-                                        .toTypedArray())),
-                            et_description.text.toString(),
-                            MockApiService.currentUser)
+                        if (locationSwitch.isChecked) {
+                            checkLocationPermission()
+                        } else {
+                            var lanParty = LanParty(
+                                et_name.text.toString(),
+                                et_plz.text.toString(),
+                                et_city.text.toString(),
+                                calendarSet,
+                                if (et_maxPlayers.text.toString()
+                                        .isEmpty()
+                                ) 0 else et_maxPlayers.text.toString().toInt(),
+                                HashSet(Arrays.asList(*tv_games.text.toString()
+                                    .split(", ".toRegex())
+                                    .dropLastWhile { it.isEmpty() }
+                                    .toTypedArray())),
+                                et_description.text.toString(),
+                                MockApiService.currentUser,
+                                latitude,
+                                longitude
+                            )
 
-                        lanPartyController.saveLanParty(lanParty)
-                        MockApiService.createLanParty(lanParty)
+                            lanPartyController.saveLanParty(lanParty)
+                            MockApiService.createLanParty(lanParty)
 
-                        //make a Toast if creation was successful and go back to MainActivity
-                        val intent = Intent(this@CreateLan, MainActivity::class.java)
-                        Toast.makeText(this@CreateLan, getString(R.string.lan_created), Toast.LENGTH_SHORT).show()
-                        startActivity(intent)
+                            //make a Toast if creation was successful and go back to MainActivity
+                            val intent = Intent(this@CreateLan, MainActivity::class.java)
+                            Toast.makeText(
+                                this@CreateLan,
+                                getString(R.string.lan_created),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            startActivity(intent)
+                        }
                     }
                     builder.setNegativeButton(getString(R.string.no)) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
                     builder.show()
@@ -264,30 +273,51 @@ class CreateLan : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            // Request missing permissions
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
             return
         }
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 // Location is retrieved successfully
                 if (location != null) {
-                    val latitude = location.latitude
-                    val longitude = location.longitude
-
-                    // Speichere die GPS-Daten oder füge sie zur LAN-Party hinzu
+                    latitude = location.latitude
+                    longitude = location.longitude
                 } else {
-                    // Location is null, handle the case when location is not available
+                    latitude = 0.0
+                    longitude = 0.0
                 }
             }
             .addOnFailureListener { exception: Exception ->
-                // Failed to retrieve location, handle the error
+                Toast.makeText(this, exception.message, Toast.LENGTH_SHORT).show()
             }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation()
+            } else {
+                // Location permission denied, handle the case when permission is not granted
+                Toast.makeText(
+                    this,
+                    getString(R.string.location_permission_denied),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
 }
