@@ -34,6 +34,11 @@
             android:name=".activities.MyLans"
             android:label="MyLans">
         </activity>
+        <activity
+            android:name=".activities.FilterLan"
+            android:label="Filter Lan">
+        </activity>
+
     </application>
 
 </manifest>

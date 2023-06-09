@@ -49,6 +49,19 @@
             app:layout_constraintEnd_toEndOf="@id/my_lans_fab"
             android:contentDescription="TODO" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/filter_lan_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_filter"
+            app:backgroundTint="#B9BBBE"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/create_lan_fab"
+            app:layout_constraintEnd_toEndOf="@id/create_lan_fab" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
