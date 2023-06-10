@@ -12,6 +12,8 @@ import at.fhjoanneum.lanfinderkotlin.activities.CreateLan
 import at.fhjoanneum.lanfinderkotlin.activities.FilterLan
 import at.fhjoanneum.lanfinderkotlin.activities.MainActivity
 import at.fhjoanneum.lanfinderkotlin.activities.MyLans
+import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.deleteFilter
+import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.isFilter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BurgerMenu : Fragment() {
@@ -20,7 +22,6 @@ class BurgerMenu : Fragment() {
     private var create_lan_fab: FloatingActionButton? = null
     private var filter_lan_fab: FloatingActionButton? = null
     var isBurgerMenuOpen = false
-    var isFiltered = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +44,7 @@ class BurgerMenu : Fragment() {
                 my_lans_fab?.show()
                 create_lan_fab?.show()
                 if (activity is MainActivity) {
-                    if (isFiltered) {
+                    if (isFilter()) {
                         filter_lan_fab?.setImageResource(R.drawable.ic_filter_clear)
                     } else {
                         filter_lan_fab?.setImageResource(R.drawable.ic_filter)
@@ -87,7 +88,14 @@ class BurgerMenu : Fragment() {
          * filter MainActivity list
          */
         filter_lan_fab?.setOnClickListener { listenerView ->
-            val intent = Intent(activity, FilterLan::class.java)
+            val intent: Intent
+
+            if (isFilter()) { //if filter is applied it should be deleted and load all lanParties
+                deleteFilter()
+                intent = Intent(activity, MainActivity::class.java)
+            } else { // if no filter is applied it should create one and reduce list of all lanParties
+                intent = Intent(activity, FilterLan::class.java)
+            }
             startActivity(intent)
         }
         return view

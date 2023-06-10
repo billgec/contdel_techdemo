@@ -13,8 +13,12 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
+import at.fhjoanneum.lanfinderkotlin.models.Filter
+import at.fhjoanneum.lanfinderkotlin.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.services.MockApiService
 import java.util.*
 
 /**
@@ -135,22 +139,36 @@ class FilterLan : AppCompatActivity() {
          */
         btnFilter.setOnClickListener(object : View.OnClickListener {
             //initialize variables
-            val et_name = findViewById<EditText>(R.id.et_name)
             val et_plz = findViewById<EditText>(R.id.et_plz)
             val et_city = findViewById<EditText>(R.id.et_city)
             val et_maxPlayers = findViewById<EditText>(R.id.et_maxPlayers)
-            val tv_error_games = findViewById<TextView>(R.id.tv_error_game)
 
-            //validate inputs
             override fun onClick(v: View) {
-                val intent = Intent(this@FilterLan, MainActivity::class.java)
+                val builder = AlertDialog.Builder(this@FilterLan)
+                builder.setTitle(getString(R.string.filter_title))
+                builder.setMessage(getString(R.string.use_this_filter))
+                builder.setPositiveButton(getString(R.string.use)) { dialog: DialogInterface?, which: Int ->
+                    val filter = Filter.getInstance()
+                    filter.zipCode = et_plz.text.toString()
+                    filter.city = et_city.text.toString()
+                    filter.date = calendarSet
+                    val maxPlayersInput = et_maxPlayers.text.toString()
+                    filter.amountMaxPlayers = if (maxPlayersInput.isNotBlank()) maxPlayersInput.toInt() else 0
+                    filter.games = HashSet(
+                        Arrays.asList(
+                            *tv_games.text.toString().split(", ".toRegex())
+                                .dropLastWhile { it.isEmpty() }
+                                .toTypedArray()
+                        )
+                    )
 
-                intent.putExtra("plz", et_plz.text.toString())
-                intent.putExtra("city", et_city.text.toString())
-                intent.putExtra("maxPlayers", et_maxPlayers.text.toString())
-                intent.putExtra("errorGames", tv_error_games.text.toString())
-
-                startActivity(intent)
+                    //make a Toast if creation was successful and go back to MainActivity
+                    val intent = Intent(this@FilterLan, MainActivity::class.java)
+                    Toast.makeText(this@FilterLan, getString(R.string.filter_applied), Toast.LENGTH_SHORT).show() // TODO
+                    startActivity(intent)
+                }
+                builder.setNegativeButton(getString(R.string.no)) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+                builder.show()
             }
         })
     }

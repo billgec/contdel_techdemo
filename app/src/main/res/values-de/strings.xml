@@ -43,4 +43,7 @@
     <string name="offline_message_description">Die Eventliste kann nicht upgedated werden. Um alle Funktionen uneingeschränkt nutzen zu können benötigt LanFinder eine Netzwerkverbindung. </string>
     <string name="btnFilter">Filter nach Auswahl</string>
     <string name="filter_title">Filter Liste</string>
+    <string name="use_this_filter">Diesen Filter anwenden?</string>
+    <string name="use">Anwenden</string>
+    <string name="filter_applied">Filter angewendet</string>
 </resources>

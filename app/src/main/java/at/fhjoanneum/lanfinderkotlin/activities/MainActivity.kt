@@ -10,6 +10,8 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
+import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.getInstance
+import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.services.MockApiService
 
@@ -50,24 +52,29 @@ class MainActivity : AppCompatActivity() {
         /**
          * Update Filter
          * */
-        if (intent != null) {
-            plz = intent.getStringExtra("plz").toString()
-            city = intent.getStringExtra("city").toString()
-            maxPlayers = intent.getStringExtra("maxPlayers").toString()
-            errorGames = intent.getStringExtra("errorGames").toString()
-
-            val newList = mutableListOf<LanParty>() // Use a mutable list instead of listOf<LanParty>()
+        if (isFilter()) {
+            val filter = getInstance()
+            val newList = mutableListOf<LanParty>()
 
             for (lanParty in datasource!!) {
-                if (lanParty?.amountMaxPlayers == maxPlayers.toIntOrNull()) {
+                val matchesFilter = when {
+                    filter.amountMaxPlayers != 0 && lanParty?.amountMaxPlayers != filter.amountMaxPlayers -> false
+                    filter.city.isNotEmpty() && lanParty?.city != filter.city -> false
+                    filter.zipCode.isNotEmpty() && lanParty?.zipCode != filter.zipCode -> false
+                    filter.date != null && lanParty?.date != filter.date -> false
+                    filter.games.isNotEmpty() && filter.games.firstOrNull() != "Select Game" && !lanParty?.games?.containsAll(filter.games)!! -> false
+                    else -> true
+                }
+
+                if (matchesFilter) {
                     newList.add(lanParty!!)
                 }
             }
+
             if (newList.isNotEmpty()) {
                 datasource = ArrayList(newList)
             }
         }
-
 
         val adapter: ArrayAdapter<*> = MainAdapter(this, datasource)
         listView.adapter = adapter
