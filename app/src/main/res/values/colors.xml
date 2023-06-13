@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="actionbar_color">#202225</color>
     <color name="et_color">#B9BBBE</color>
+    <color name="background_color">#35393E</color>
 </resources>
