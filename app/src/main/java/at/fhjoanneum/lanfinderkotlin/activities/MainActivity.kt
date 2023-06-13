@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
             setLogo(R.drawable.ic_logo_actionbar)
             setDisplayUseLogoEnabled(true)
         }
-
-        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     override fun onStart() {

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "831331187767-tg8st26lt7po63sfls4iroileptcfd9d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "at.fhjoanneum.lanfinderkotlin",
+            "certificate_hash": "22e0c4da192cbc54bf46596957c108f50b7c526b"
+          }
+        },
+        {
           "client_id": "831331187767-m8bchb28tr80nuftuueredu47f2h7hct.apps.googleusercontent.com",
           "client_type": 3
         }

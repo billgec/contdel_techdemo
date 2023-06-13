@@ -41,12 +41,12 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_register_firstname"
+                android:id="@+id/til_register_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_margin="16dp"
-                android:hint="@string/til_register_firstname_hint"
+                android:hint="@string/til_register_username_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +56,7 @@
                 app:hintTextColor="@color/et_color">
 
                 <EditText
-                    android:id="@+id/et_register_firstname"
+                    android:id="@+id/et_register_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -68,32 +68,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_register_lastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="16dp"
-                android:hint="@string/til_lastname_hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_register_firstname"
-                app:boxStrokeColor="@color/et_color"
-                android:backgroundTint="@color/et_color"
-                android:textColorHint="@color/et_color"
-                app:hintTextColor="@color/et_color">
-
-                <EditText
-                    android:id="@+id/et_register_lastname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="@dimen/et_16dp_padding"
-                    android:textSize="@dimen/et_16sp_textsize"
-                    android:textColor="@color/et_color"
-                    android:textColorHint="@color/et_color"
-                    android:backgroundTint="@color/et_color"/>
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_register_email"
@@ -104,7 +78,7 @@
                 android:hint="@string/et_login_email_hint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_register_lastname"
+                app:layout_constraintTop_toBottomOf="@id/til_register_username"
                 app:boxStrokeColor="@color/et_color"
                 android:backgroundTint="@color/et_color"
                 android:textColorHint="@color/et_color"

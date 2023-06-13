@@ -57,4 +57,5 @@
     <string name="tv_forgotpassword_title_text">Forgot password?</string>
     <string name="tv_forgotpassword_description_text">Please enter your email address and we\'ll send you an email to reset your password.</string>
     <string name="btn_forgotpassword_submit_text">Submit</string>
+    <string name="til_register_username_hint">Username</string>
 </resources>
