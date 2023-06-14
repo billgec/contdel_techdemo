@@ -10,10 +10,10 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
-import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.getInstance
-import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.isFilter
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
+import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 
 /**
  * This activity shows all LANs the user can sign up for.

@@ -1,4 +1,4 @@
-package at.fhjoanneum.lanfinderkotlin.models
+package at.fhjoanneum.lanfinderkotlin.restapi.models
 
 import java.util.GregorianCalendar
 

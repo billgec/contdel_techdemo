@@ -13,10 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.mockdata.MockUsers
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.models.User
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.Objects
@@ -50,7 +50,7 @@ class Info : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
             setLogo(R.drawable.ic_logo_actionbar)
             setDisplayUseLogoEnabled(true)
-           setDisplayHomeAsUpEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
         }
 
         /*

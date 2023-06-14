@@ -1,10 +1,10 @@
-package at.fhjoanneum.lanfinderkotlin.models
+package at.fhjoanneum.lanfinderkotlin.restapi.models
 
+import at.fhjoanneum.lanfinderkotlin.restapi.service.api.model.BaseEntity
 import java.io.Serializable
 import java.util.GregorianCalendar
 
-class LanParty : Serializable {
-    var id = 0
+class LanParty : Serializable, BaseEntity {
     var name: String
     var zipCode: String
     var city: String
@@ -37,7 +37,7 @@ class LanParty : Serializable {
     }
 
     constructor(
-        id: Int, name: String, zipCode: String, city: String, date: GregorianCalendar?,
+        id: String, name: String, zipCode: String, city: String, date: GregorianCalendar?,
         amountMaxPlayers: Int, games: HashSet<String>, description: String, organizer: User?
     ) {
         this.id = id

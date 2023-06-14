@@ -16,8 +16,8 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 import java.util.Arrays
 import java.util.Calendar
 import java.util.Collections
