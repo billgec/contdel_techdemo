@@ -1,13 +1,13 @@
-package at.fhjoanneum.lanfinderkotlin.services
+package at.fhjoanneum.lanfinderkotlin.restapi.services
 
 import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.Constants
 import at.fhjoanneum.lanfinderkotlin.activities.LoginActivity
 import at.fhjoanneum.lanfinderkotlin.activities.RegisterActivity
-import at.fhjoanneum.lanfinderkotlin.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
 class CloudFirestore {
 

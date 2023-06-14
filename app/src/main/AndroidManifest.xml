@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="at.fhjoanneum.lanfinderkotlin"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -48,7 +50,13 @@
             android:label="Info" />
         <activity
             android:name=".activities.MyLans"
-            android:label="MyLans" />
+            android:label="MyLans">
+        </activity>
+        <activity
+            android:name=".activities.FilterLan"
+            android:label="Filter Lan">
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "831331187767",
-    "project_id": "lanparty-e47c5",
-    "storage_bucket": "lanparty-e47c5.appspot.com"
+    "project_number": "697347861937",
+    "project_id": "lanparty-833b9",
+    "storage_bucket": "lanparty-833b9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:831331187767:android:ddc77271a7b005181693b2",
+        "mobilesdk_app_id": "1:697347861937:android:06fb62e8b691a6dbefe190",
         "android_client_info": {
           "package_name": "at.fhjoanneum.lanfinderkotlin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "831331187767-tg8st26lt7po63sfls4iroileptcfd9d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "at.fhjoanneum.lanfinderkotlin",
-            "certificate_hash": "22e0c4da192cbc54bf46596957c108f50b7c526b"
-          }
-        },
-        {
-          "client_id": "831331187767-m8bchb28tr80nuftuueredu47f2h7hct.apps.googleusercontent.com",
+          "client_id": "697347861937-k5fhgf23tsdi1b8dvpm0e8pg2u62su15.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC3xI--dYJbDpVE2JWqttXi1nOTaYiaW4k"
+          "current_key": "AIzaSyCg3PUydx_IDtgGJ9cMSq1XrBECfxNy6mA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "831331187767-m8bchb28tr80nuftuueredu47f2h7hct.apps.googleusercontent.com",
+              "client_id": "697347861937-k5fhgf23tsdi1b8dvpm0e8pg2u62su15.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -13,10 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.mockdata.MockUsers
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.models.User
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.stream.Collectors
@@ -32,6 +32,15 @@ class Info : AppCompatActivity() {
         val intent = intent
         val bundle = intent.extras
         val selectedLanParty = bundle!!.getSerializable("selectedLanParty") as LanParty?
+        val btnSignUp = findViewById<View>(R.id.btn_signup)
+        val messageBox = findViewById<View>(R.id.et_description)
+
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            NetworkUtils.openNetworkErrorDialog(this)
+            btnSignUp.isEnabled = false
+            btnSignUp.alpha = 0.2f
+            messageBox.isEnabled = false
+        }
 
         /*
          * Action Bar settings (set logo to action bar and back button)
@@ -40,7 +49,7 @@ class Info : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
             setLogo(R.drawable.ic_logo_actionbar)
             setDisplayUseLogoEnabled(true)
-           setDisplayHomeAsUpEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
         }
 
         /*

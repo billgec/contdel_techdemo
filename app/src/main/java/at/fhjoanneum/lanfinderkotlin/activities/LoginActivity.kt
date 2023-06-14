@@ -1,14 +1,13 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.User
-import at.fhjoanneum.lanfinderkotlin.services.CloudFirestore
+import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.services.CloudFirestore
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BasicActivity() {

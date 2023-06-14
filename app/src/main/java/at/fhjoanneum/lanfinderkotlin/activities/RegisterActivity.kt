@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : BasicActivity() {

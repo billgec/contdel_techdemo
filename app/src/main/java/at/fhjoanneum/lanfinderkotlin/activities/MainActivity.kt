@@ -10,14 +10,21 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
+import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 
 /**
- * This activity shows all lans the user can sign up for.
+ * This activity shows all LANs the user can sign up for.
  */
 class MainActivity : AppCompatActivity() {
-    var datasource: ArrayList<LanParty?>? = null
+    private var datasource: ArrayList<LanParty?>? = null
+    lateinit var name: String
+    lateinit var plz: String
+    lateinit var city: String
+    lateinit var maxPlayers: String
+    lateinit var errorGames: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +42,49 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            NetworkUtils.openNetworkErrorDialog(this)
+        }
+
         val listView = findViewById<ListView>(R.id.listview_main)
         datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
+
+        /**
+         * Update Filter
+         * */
+        if (isFilter()) {
+            val filter = getInstance()
+            val newList = mutableListOf<LanParty>()
+
+            for (lanParty in datasource!!) {
+                val matchesFilter = when {
+                    filter.amountMaxPlayers != 0 && lanParty?.amountMaxPlayers != filter.amountMaxPlayers -> false
+                    filter.city.isNotEmpty() && lanParty?.city != filter.city -> false
+                    filter.zipCode.isNotEmpty() && lanParty?.zipCode != filter.zipCode -> false
+                    filter.date != null && lanParty?.date != filter.date -> false
+                    filter.games.isNotEmpty() && filter.games.firstOrNull() != "Select Game" && !lanParty?.games?.containsAll(filter.games)!! -> false
+                    else -> true
+                }
+
+                if (matchesFilter) {
+                    newList.add(lanParty!!)
+                }
+            }
+
+            if (newList.isNotEmpty()) {
+                datasource = ArrayList(newList)
+            }
+        }
+
         val adapter: ArrayAdapter<*> = MainAdapter(this, datasource)
         listView.adapter = adapter
-        listView.onItemClickListener =
-            OnItemClickListener { adapterView: AdapterView<*>?, view: View?, position: Int, id: Long ->
-                val selectedItem = adapter.getItem(position) as LanParty?
-                val intent = Intent(applicationContext, Info::class.java)
-                val bundle = Bundle()
-                bundle.putSerializable("selectedLanParty", selectedItem)
-                intent.putExtras(bundle)
-                startActivity(intent)
-            }
+        listView.onItemClickListener = OnItemClickListener { _: AdapterView<*>, _: View?, position: Int, _: Long ->
+            val selectedItem = adapter.getItem(position) as LanParty?
+            val intent = Intent(applicationContext, Info::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("selectedLanParty", selectedItem)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
     }
 }

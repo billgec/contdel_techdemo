@@ -1,4 +1,4 @@
-package at.fhjoanneum.lanfinderkotlin.mockdata
+package at.fhjoanneum.lanfinderkotlin.restapi.mockdata
 
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 

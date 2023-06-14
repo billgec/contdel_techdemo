@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import java.util.Calendar
 import java.util.GregorianCalendar
 
