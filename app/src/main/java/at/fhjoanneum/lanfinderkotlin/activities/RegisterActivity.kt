@@ -57,6 +57,7 @@ class RegisterActivity : BasicActivity() {
                     if(task.isSuccessful) {
                         val firebaseUser = task.result!!.user!!
                         showCustomSnackbar("A new user has been created with Firebase", false)
+                        startActivity(Intent(this, LoginActivity::class.java))
                         val user = User(firebaseUser.uid, userName, email)
                     } else {
                         showCustomSnackbar(task.exception!!.toString(), true)

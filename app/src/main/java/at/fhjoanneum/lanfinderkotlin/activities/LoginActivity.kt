@@ -46,7 +46,8 @@ class LoginActivity : BasicActivity() {
                     if(task.isSuccessful){
                         showCustomSnackbar("You are logged in :)", false);
 
-                        CloudFirestore().getUserDetails(this)
+                        //CloudFirestore().getUserDetails(this)
+                        //todo use function of Benj instead and call userLoggedInSuccess
                     } else {
                         showCustomSnackbar(task.exception!!.message.toString(), true);
                     }
