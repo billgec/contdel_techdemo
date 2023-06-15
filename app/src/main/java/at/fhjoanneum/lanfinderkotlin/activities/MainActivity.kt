@@ -14,6 +14,8 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 /**
  * This activity shows all LANs the user can sign up for.
