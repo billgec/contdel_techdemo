@@ -14,18 +14,14 @@ object LanPartyController {
 
     init {
         accessLan.getLan { lanList ->
-            if (lanList.isNotEmpty()) {
-                for (lan in lanList) {
-                    val convertedLan = applicationCompliance(lan)
-                    if (convertedLan != null) {
-                        lanPartyList.add(convertedLan)
-                        Log.d(TAG, "loading lan... ${convertedLan.id}")
-                    }
+            for (lan in lanList) {
+                val convertedLan = applicationCompliance(lan)
+                if (convertedLan != null) {
+                    lanPartyList.add(convertedLan)
+                    Log.d(TAG, "loading lan... ${convertedLan.id}")
                 }
-                Log.d(TAG, "SOMETHING HAPPENDED")
-            } else {
-                Log.d(TAG, "No lans found")
             }
+            Log.d(TAG, "SOMETHING HAPPENDED")
         }
     }
 
