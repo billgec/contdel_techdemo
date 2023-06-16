@@ -1,7 +1,9 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
@@ -10,9 +12,12 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
+import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
+import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
 import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
@@ -50,6 +55,12 @@ class MainActivity : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.listview_main)
         datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
+
+        for (o in datasource!!) {
+            if (o != null) {
+                Log.d(ContentValues.TAG, "HERE IS A LANPARTY ${o.id}")
+            }
+        }
 
         /**
          * Update Filter

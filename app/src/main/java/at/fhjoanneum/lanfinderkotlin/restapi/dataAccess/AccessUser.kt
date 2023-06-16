@@ -8,16 +8,6 @@ import com.google.firebase.ktx.Firebase
 
 class AccessUser {
     private val db = Firebase.firestore
-/*
-
-    data class User(
-        var username: String = "",
-        var email: String = ""
-    ) {
-        // No-argument constructor required by Firestore
-        constructor() : this("", "")
-    }
-*/
 
     fun createUser(user: User) {
         // Add a new document with a generated ID
@@ -31,13 +21,20 @@ class AccessUser {
             }
     }
 
-    fun getUser() {
+    fun getUser(callback: (List<User>) -> Unit) {
         db.collection("users")
             .get()
             .addOnSuccessListener { result ->
+                val userList = mutableListOf<User>()
+
                 for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
+                    val user = document.toObject(User::class.java)
+                    user.id = document.id
+                    userList.add(user)
                 }
+
+                // Pass the userList to the callback function
+                callback(userList)
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)

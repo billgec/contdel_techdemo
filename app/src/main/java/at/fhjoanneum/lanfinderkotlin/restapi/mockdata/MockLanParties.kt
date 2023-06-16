@@ -1,10 +1,20 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.mockdata
 
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
+import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController.currentUser
 import java.util.GregorianCalendar
 
 object MockLanParties {
-    var mockLanParties = arrayListOf(
+    private val lanpartyController = LanPartyController
+/*
+
+    var mockLanParties =
+        lanpartyController.lanPartyList
+*/
+
+
+        var mockLanParties = arrayListOf(
         LanParty(
             "1",
             "Best LAN Party in Graz",
@@ -14,7 +24,7 @@ object MockLanParties {
             10,
             HashSet(listOf("Battlefield", "Team Fortress")),
             "This is the best LAN Party in Graz. You should definitely come!",
-            MockUsers.mockUsers[0]
+            currentUser
         ),
         LanParty(
             "2",
@@ -25,7 +35,7 @@ object MockLanParties {
             4,
             HashSet(listOf("Battlefield")),
             "This is a Battlefield LAN party. You should definitely come!",
-            MockUsers.mockUsers[0]
+            currentUser
         ),
         LanParty(
             "3",
@@ -36,7 +46,7 @@ object MockLanParties {
             15,
             HashSet(listOf("Hand Simulator")),
             "This is a Hand simulator LAN party. You should definitely come!",
-            MockUsers.mockUsers[1]
+            currentUser
         ),
         LanParty(
             "4",
@@ -47,7 +57,7 @@ object MockLanParties {
             10,
             HashSet(listOf("Battlefield")),
             "This is a Battlefield LAN party. You should definitely come!",
-            MockUsers.mockUsers[2]
+            currentUser
         ),
         LanParty(
             "5",
@@ -58,7 +68,7 @@ object MockLanParties {
             8,
             HashSet(listOf("League of Legends")),
             "This is a League of Legends LAN party. You should definitely come!",
-            MockUsers.mockUsers[3]
+            currentUser
         ),
         LanParty(
             "6",
@@ -69,7 +79,7 @@ object MockLanParties {
             15,
             HashSet(listOf("GTFO")),
             "This is a GTFO LAN party. You should definitely come!",
-            MockUsers.mockUsers[4]
+            currentUser
         ),
         LanParty(
             "7",
@@ -80,7 +90,7 @@ object MockLanParties {
             5,
             HashSet(listOf("Rogue Company")),
             "This is a Rogue Company LAN party. You should definitely come!",
-            MockUsers.mockUsers[4]
+            currentUser
         ),
         LanParty(
             "8",
@@ -91,7 +101,7 @@ object MockLanParties {
             10,
             HashSet(listOf("World of Warcraft")),
             "This is a World of Warcraft LAN party. You should definitely come!",
-            MockUsers.mockUsers[2]
+            currentUser
         ),
         LanParty(
             "9",
@@ -102,7 +112,7 @@ object MockLanParties {
             10,
             HashSet(listOf("Brawlhalla")),
             "This is a Brawlhalla LAN party. You should definitely come!",
-            MockUsers.mockUsers[3]
+            currentUser
         ),
         LanParty(
             "10",
@@ -113,7 +123,7 @@ object MockLanParties {
             10,
             HashSet(listOf("Fortnite", "Counter Strike")),
             "This is a LAN party for students. You should definitely come!",
-            MockUsers.mockUsers[3]
+            currentUser
         ),
         LanParty(
             "11",
@@ -124,7 +134,14 @@ object MockLanParties {
             10,
             HashSet(listOf("Fortnite", "Minecraft", "Call of Duty")),
             "This is an anonymous LAN party. You should definitely come!",
-            MockUsers.mockUsers[1]
+            currentUser
         )
     )
+
+
+   /* fun pushMockdata() {
+        for (lan in mockLanParties) {
+            LanPartyController.createLan(lan)
+        }
+    }*/
 }

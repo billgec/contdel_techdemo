@@ -1,8 +1,10 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.mockdata
 
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 
 object MockUsers {
+    val usercontroller = UserController
     var mockUsers = ArrayList(
         listOf(
             User("isi1903", "juergen.guoekdemir@gmail.com"),
@@ -13,4 +15,10 @@ object MockUsers {
             User("jurgengoekdemir", "juergen.guoekdemir@gmail.com")
         )
     )
+
+    fun pushMockdata() {
+        for (user in mockUsers) {
+            usercontroller.createUser(user)
+        }
+    }
 }

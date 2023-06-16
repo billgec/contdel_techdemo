@@ -6,22 +6,30 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
 object UserController {
-
     val accessUser = AccessUser()
+    val users = mutableListOf<User>()
 
-    var currentUser: User? = User("isi1903", "juergen.guoekdemir@gmail.com")
+    var currentUser: User = users.find { it.id == userId } ?: User("no Input", "no Input")
 
     // Retrieve a user by ID
-    val userId = "3dvGtdSd1e48UqvgGrdo" // id in cloud firestore
+    val userId = "00FHLxEP82s9EQaEVplQ" // id in cloud firestore
 
     init {
-        accessUser.getUser(userId) { user ->
-            if (user != null) {
-                currentUser = user // current user assigned here
-                Log.d(TAG, "Retrieved user: ${user.username}, ${user.email}")
-            } else {
-                Log.d(TAG, "User not found")
+        accessUser.getUser { userList ->
+            // Iterate through the userList and process the users
+            for (user in userList) {
+                Log.d(TAG, "loading user... ${user.id} => ${user.username}")
+                users.add(user)
             }
         }
     }
+
+    fun getUser(userId: String) : User? {
+        return users.find { it.id == userId }
+    }
+
+    fun createUser(user: User){
+        accessUser.createUser(user)
+    }
+
 }

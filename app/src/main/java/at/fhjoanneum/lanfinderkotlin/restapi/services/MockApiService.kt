@@ -8,6 +8,8 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
 object MockApiService {
     val currentUser: User = UserController.currentUser as User
+    var lanPartyList = arrayListOf<LanParty>()
+
     fun createUser(user: User): Boolean {
         val filteredUser = MockUsers.mockUsers.find { it?.username == user.username }
         return if (filteredUser == null) {
@@ -32,7 +34,7 @@ object MockApiService {
     }
 
     val lanParties: ArrayList<LanParty>
-        get() = MockLanParties.mockLanParties
+        get() = MockLanParties.mockLanParties as ArrayList<LanParty>
 
     val lanPartiesForCurrentUser: List<LanParty?>
         get() {
