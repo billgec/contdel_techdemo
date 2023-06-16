@@ -8,6 +8,7 @@ import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import at.fhjoanneum.lanfinderkotlin.restapi.services.CloudFirestore
+import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BasicActivity() {
@@ -48,6 +49,7 @@ class LoginActivity : BasicActivity() {
 
                         //CloudFirestore().getUserDetails(this)
                         //todo use function of Benj instead and call userLoggedInSuccess
+                        userLoggedInSuccess(UserController.currentUser);
                     } else {
                         showCustomSnackbar(task.exception!!.message.toString(), true);
                     }

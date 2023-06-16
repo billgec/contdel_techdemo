@@ -1,6 +1,6 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.models
 
-import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -14,34 +14,71 @@ class AccessUser {
         db.collection("users")
             .add(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(ContentValues.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
-                Log.w(ContentValues.TAG, "Error adding document", e)
+                Log.w(TAG, "Error adding document", e)
             }
     }
 
-    fun readUser(callback: (List<DocumentSnapshot>?, Exception?) -> Unit) {
+    fun getUser(callback: (List<User>) -> Unit) {
         db.collection("users")
             .get()
             .addOnSuccessListener { result ->
-                val documents = result.documents
-                callback(documents, null)
+                val userList = mutableListOf<User>()
+
+                for (document in result) {
+                    val user = document.toObject(User::class.java)
+                    user.id = document.id
+                    userList.add(user)
+                }
+
+                // Pass the userList to the callback function
+                callback(userList)
             }
             .addOnFailureListener { exception ->
-                callback(null, exception)
+                Log.w(TAG, "Error getting documents.", exception)
             }
     }
 
-    fun getUser(id: String, callback: (DocumentSnapshot?, Exception?) -> Unit) {
-        db.collection("users")
-            .document(id)
+    fun getUser(userId: String, callback: (User?) -> Unit) {
+        db.collection("users").document(userId)
             .get()
-            .addOnSuccessListener { documentSnapshot ->
-                callback(documentSnapshot, null)
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val user = document.toObject(User::class.java)
+                    callback(user)
+                } else {
+                    callback(null)
+                }
             }
             .addOnFailureListener { exception ->
-                callback(null, exception)
+                Log.w(TAG, "Error getting user", exception)
+                callback(null)
+            }
+    }
+
+    fun updateUser(id: String, updatedUser: User) {
+        db.collection("users")
+            .document(id)
+            .set(updatedUser)
+            .addOnSuccessListener {
+                Log.d(TAG, "User updated successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating user", e)
+            }
+    }
+
+    fun deleteUser(id: String) {
+        db.collection("users")
+            .document(id)
+            .delete()
+            .addOnSuccessListener {
+                Log.d(TAG, "User deleted successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error deleting user", e)
             }
     }
 }

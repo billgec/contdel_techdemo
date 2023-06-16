@@ -2,10 +2,17 @@ package at.fhjoanneum.lanfinderkotlin.restapi.services
 
 import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
 import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
+import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
 object MockApiService {
+    val currentUser: User = UserController.currentUser as User
+    val lanPartyController = LanPartyController
+
+    val lanParties: ArrayList<LanParty>
+        get() = lanPartyController.lanPartyList
+
     fun createUser(user: User): Boolean {
         val filteredUser = MockUsers.mockUsers.find { it?.username == user.username }
         return if (filteredUser == null) {
@@ -29,9 +36,6 @@ object MockApiService {
         mockLanParty?.registeredPlayers = currentRegisteredPlayers
     }
 
-    val lanParties: ArrayList<LanParty>
-        get() = MockLanParties.mockLanParties
-
     val lanPartiesForCurrentUser: List<LanParty?>
         get() {
             val allLanParties = lanParties
@@ -49,9 +53,6 @@ object MockApiService {
                 listOf()
             }
         }
-
-    val currentUser: User?
-        get() = MockUsers.mockUsers.getOrNull(5)
 
     fun removeUserFromLanParty(user: User?, selectedLanPartyId: String) {
         val mockLanParty = MockLanParties.mockLanParties.find { it?.id == selectedLanPartyId }
