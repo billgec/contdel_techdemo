@@ -1,7 +1,5 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.services
 
-import android.content.ContentValues
-import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
@@ -40,7 +38,7 @@ object ApiService {
             val allLanParties = lanParties
             val currentUser = currentUser
             return allLanParties.filter { lan ->
-                lan?.organizer?.compareTo(currentUser) == 0 && lan.registeredPlayers?.any { player -> player?.compareTo(currentUser) == 0 } == true
+                lan.registeredPlayers?.any { player -> player?.compareTo(currentUser) == 0 } == true
             }
         }
 
@@ -48,11 +46,8 @@ object ApiService {
         get() {
             val allLanParties = lanParties
             val currentUser = currentUser
-            Log.e(ContentValues.TAG, "Error converting LanParty: ${currentUser.id}")
-
             return if (currentUser != null) {
-                allLanParties.filter { lan ->
-                    lan?.organizer?.compareTo(currentUser) != 0 && !lan.registeredPlayers?.any { player -> player?.compareTo(currentUser) == 0 }!!
+                allLanParties.filter { lan ->!lan.registeredPlayers?.any { player -> player?.compareTo(currentUser) == 0 }!!
                 }
             } else {
                 listOf()

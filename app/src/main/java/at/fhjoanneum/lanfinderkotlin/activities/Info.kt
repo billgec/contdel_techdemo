@@ -2,9 +2,11 @@ package at.fhjoanneum.lanfinderkotlin.activities
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -18,6 +20,7 @@ import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.stream.Collectors
+
 
 /**
  * This activity shows the User the information about the lan.
@@ -95,6 +98,7 @@ class Info : AppCompatActivity() {
          * Set the onClickListener for the button
          */
         val currentUser = ApiService.currentUser
+
         if (selectedLanParty.registeredPlayers!!.stream()
                 .filter { x: User? -> x!!.id == currentUser!!.id }
                 .collect(Collectors.toList()).size == 1

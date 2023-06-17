@@ -1,6 +1,8 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.service.api.model
 
-abstract class BaseEntity : Comparable<BaseEntity> {
+import java.io.Serializable
+
+abstract class BaseEntity : Comparable<BaseEntity>, Serializable {
     var id: String = ""
 
     override fun compareTo(other: BaseEntity): Int {

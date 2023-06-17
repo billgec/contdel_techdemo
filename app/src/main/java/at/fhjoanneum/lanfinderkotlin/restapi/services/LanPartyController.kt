@@ -26,10 +26,8 @@ object LanPartyController {
                     val convertedLan = applicationCompliance(lan)
                     if (convertedLan != null) {
                         lanPartyList.add(convertedLan)
-                        Log.d(TAG, "loading lan... ${convertedLan.id}")
                     }
                 }
-                Log.d(TAG, "SOMETHING HAPPENED")
                 continuation.resume(Unit)
             }
         }
@@ -55,8 +53,8 @@ object LanPartyController {
             val games = lanParty.games.split(",").toHashSet()
 
             val players = HashSet<User>()
-            for (userId in lanParty.registeredPlayers.split(",").toHashSet()) {
-                userController.getUser(userId)?.let { players.add(it) }
+            for (playerId in lanParty.registeredPlayers.split(",").toHashSet()) {
+                users.find { user -> user.id == playerId }?.let { players.add(it) }
             }
             val convertedOrganizer = users.find { user -> user.id == lanParty.organizer }
 

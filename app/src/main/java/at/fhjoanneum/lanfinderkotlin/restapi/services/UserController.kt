@@ -1,7 +1,5 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.services
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import kotlinx.coroutines.Dispatchers
