@@ -12,20 +12,20 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
-import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
-import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
 import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
+import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * This activity shows all LANs the user can sign up for.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispatchers.Default) {
     private var datasource: ArrayList<LanParty?>? = null
     lateinit var name: String
     lateinit var plz: String
@@ -54,50 +54,50 @@ class MainActivity : AppCompatActivity() {
         }
 
         val listView = findViewById<ListView>(R.id.listview_main)
-        datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
 
-        for (o in datasource!!) {
-            if (o != null) {
-                Log.d(ContentValues.TAG, "HERE IS A LANPARTY ${o.id}")
-            }
-        }
+        launch {
+            MockApiService.initializeLanParties()
+            datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
 
-        /**
-         * Update Filter
-         * */
-        if (isFilter()) {
-            val filter = getInstance()
-            val newList = mutableListOf<LanParty>()
+            /**
+             * Update Filter
+             * */
+            if (isFilter()) {
+                val filter = getInstance()
+                val newList = mutableListOf<LanParty>()
 
-            for (lanParty in datasource!!) {
-                val matchesFilter = when {
-                    filter.amountMaxPlayers != 0 && lanParty?.amountMaxPlayers != filter.amountMaxPlayers -> false
-                    filter.city.isNotEmpty() && lanParty?.city != filter.city -> false
-                    filter.zipCode.isNotEmpty() && lanParty?.zipCode != filter.zipCode -> false
-                    filter.date != null && lanParty?.date != filter.date -> false
-                    filter.games.isNotEmpty() && filter.games.firstOrNull() != "Select Game" && !lanParty?.games?.containsAll(filter.games)!! -> false
-                    else -> true
+                for (lanParty in datasource!!) {
+                    val matchesFilter = when {
+                        filter.amountMaxPlayers != 0 && lanParty?.amountMaxPlayers != filter.amountMaxPlayers -> false
+                        filter.city.isNotEmpty() && lanParty?.city != filter.city -> false
+                        filter.zipCode.isNotEmpty() && lanParty?.zipCode != filter.zipCode -> false
+                        filter.date != null && lanParty?.date != filter.date -> false
+                        filter.games.isNotEmpty() && filter.games.firstOrNull() != "Select Game" && !lanParty?.games?.containsAll(filter.games)!! -> false
+                        else -> true
+                    }
+
+                    if (matchesFilter) {
+                        newList.add(lanParty!!)
+                    }
                 }
 
-                if (matchesFilter) {
-                    newList.add(lanParty!!)
+                if (newList.isNotEmpty()) {
+                    datasource = ArrayList(newList)
                 }
             }
 
-            if (newList.isNotEmpty()) {
-                datasource = ArrayList(newList)
+            launch(Dispatchers.Main) {
+                val adapter: ArrayAdapter<*> = MainAdapter(this@MainActivity, datasource)
+                listView.adapter = adapter
+                listView.onItemClickListener = OnItemClickListener { _: AdapterView<*>, _: View?, position: Int, _: Long ->
+                    val selectedItem = adapter.getItem(position) as LanParty?
+                    val intent = Intent(applicationContext, Info::class.java)
+                    val bundle = Bundle()
+                    bundle.putSerializable("selectedLanParty", selectedItem)
+                    intent.putExtras(bundle)
+                    startActivity(intent)
+                }
             }
-        }
-
-        val adapter: ArrayAdapter<*> = MainAdapter(this, datasource)
-        listView.adapter = adapter
-        listView.onItemClickListener = OnItemClickListener { _: AdapterView<*>, _: View?, position: Int, _: Long ->
-            val selectedItem = adapter.getItem(position) as LanParty?
-            val intent = Intent(applicationContext, Info::class.java)
-            val bundle = Bundle()
-            bundle.putSerializable("selectedLanParty", selectedItem)
-            intent.putExtras(bundle)
-            startActivity(intent)
         }
     }
 }

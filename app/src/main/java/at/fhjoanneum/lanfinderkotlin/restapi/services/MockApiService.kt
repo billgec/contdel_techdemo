@@ -7,20 +7,17 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
 object MockApiService {
-    val currentUser: User = UserController.currentUser as User
     val lanPartyController = LanPartyController
-
+    val currentUser: User = UserController.currentUser as User
     val lanParties: ArrayList<LanParty>
         get() = lanPartyController.lanPartyList
 
-    fun createUser(user: User): Boolean {
-        val filteredUser = MockUsers.mockUsers.find { it?.username == user.username }
-        return if (filteredUser == null) {
-            MockUsers.mockUsers.add(user)
-            true
-        } else {
-            false
-        }
+
+    // Use a suspend function to populate lanParties asynchronously
+    suspend fun initializeLanParties() {
+        // Call the init function to populate lanPartyList
+        lanPartyController.init()
+
     }
 
     fun createLanParty(lanParty: LanParty): Boolean {

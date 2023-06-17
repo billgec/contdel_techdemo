@@ -6,24 +6,34 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessLan
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import java.util.GregorianCalendar
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 object LanPartyController {
     private val accessLan = AccessLan()
     private val userController = UserController
     val lanPartyList = arrayListOf<LanParty>()
 
-    init {
-        accessLan.getLan { lanList ->
-            for (lan in lanList) {
-                val convertedLan = applicationCompliance(lan)
-                if (convertedLan != null) {
-                    lanPartyList.add(convertedLan)
-                    Log.d(TAG, "loading lan... ${convertedLan.id}")
+    val users: ArrayList<User>
+        get() = userController.users
+
+    suspend fun init() {
+        userController.init()
+        suspendCoroutine<Unit> { continuation ->
+            accessLan.getLan { lanList ->
+                for (lan in lanList) {
+                    val convertedLan = applicationCompliance(lan)
+                    if (convertedLan != null) {
+                        lanPartyList.add(convertedLan)
+                        Log.d(TAG, "loading lan... ${convertedLan.id}")
+                    }
                 }
+                Log.d(TAG, "SOMETHING HAPPENED")
+                continuation.resume(Unit)
             }
-            Log.d(TAG, "SOMETHING HAPPENDED")
         }
     }
+
 
     fun createLan(lan: LanParty){
         val newLan = databaseCompliance(lan)

@@ -4,25 +4,33 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 object UserController {
     val accessUser = AccessUser()
-    val users = mutableListOf<User>()
+    val users = arrayListOf<User>()
     var currentUser: User = User("no Input", "no Input") // Default value
 
     // Retrieve a user by ID
     val userId = "00FHLxEP82s9EQaEVplQ" // id in cloud firestore
 
-    init {
-        accessUser.getUser { userList ->
-            // Iterate through the userList and process the users
-            for (user in userList) {
-                Log.d(TAG, "loading user... ${user.id} => ${user.username}")
-                users.add(user)
-            }
+    suspend fun init() {
+        withContext(Dispatchers.IO) {
+            suspendCoroutine<Unit> { continuation ->
+                accessUser.getUser { userList ->
+                    for (user in userList) {
+                        users.add(user)
+                        Log.d(TAG, "loading user... ${user.id} => ${user.username}")
+                    }
 
-            currentUser = users.find { it.id == userId } ?: User("no Input", "no Input")
-            Log.d(TAG, "ATTENTION ${currentUser.id} => ${currentUser.username}")
+                    currentUser = users.find { it.id == userId } ?: User("no Input", "no Input")
+                    Log.d(TAG, "CURRENT USER: ${currentUser.id} => ${currentUser.username}")
+                    continuation.resume(Unit)
+                }
+            }
         }
     }
 
