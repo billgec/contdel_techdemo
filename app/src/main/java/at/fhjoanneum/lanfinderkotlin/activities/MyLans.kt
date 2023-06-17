@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MyLansAdapter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
-import java.util.Objects
+import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 
 /**
  * This activity shows all lans the user is a member of.
@@ -40,7 +39,7 @@ class MyLans : AppCompatActivity() {
             NetworkUtils.openNetworkErrorDialog(this)
         }
         val listView = findViewById<ListView>(R.id.listview_myLans)
-        datasource = MockApiService.lanPartiesForCurrentUser as ArrayList<LanParty?>
+        datasource = ApiService.lanPartiesForCurrentUser as ArrayList<LanParty?>
         val adapter: ArrayAdapter<*> = MyLansAdapter(this, datasource)
         listView.adapter = adapter
         listView.onItemClickListener = OnItemClickListener { adapterView, view, position, id ->

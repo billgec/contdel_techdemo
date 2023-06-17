@@ -12,7 +12,7 @@ import kotlin.coroutines.suspendCoroutine
 object LanPartyController {
     private val accessLan = AccessLan()
     private val userController = UserController
-    val lanPartyList = arrayListOf<LanParty>()
+    var lanPartyList = arrayListOf<LanParty>()
 
     val users: ArrayList<User>
         get() = userController.users
@@ -21,6 +21,7 @@ object LanPartyController {
         userController.init()
         suspendCoroutine<Unit> { continuation ->
             accessLan.getLan { lanList ->
+                lanPartyList = arrayListOf<LanParty>()
                 for (lan in lanList) {
                     val convertedLan = applicationCompliance(lan)
                     if (convertedLan != null) {
@@ -42,6 +43,7 @@ object LanPartyController {
 
     private fun applicationCompliance(lanParty: AccessLan.LanParty): LanParty? {
         try {
+            //parse values
             val date = if (!lanParty.date.isNullOrEmpty()) {
                 val gregorianCalendar = GregorianCalendar()
                 gregorianCalendar.timeInMillis = lanParty.date.toLong()
@@ -49,13 +51,16 @@ object LanPartyController {
             } else {
                 null
             }
+
             val games = lanParty.games.split(",").toHashSet()
 
             val players = HashSet<User>()
             for (userId in lanParty.registeredPlayers.split(",").toHashSet()) {
                 userController.getUser(userId)?.let { players.add(it) }
             }
-            val convertedOrganizer = userController.getUser(lanParty.organizer)
+            val convertedOrganizer = users.find { user -> user.id == lanParty.organizer }
+
+            //create Lanparty with values
             return LanParty(
                 lanParty.id,
                 lanParty.name,

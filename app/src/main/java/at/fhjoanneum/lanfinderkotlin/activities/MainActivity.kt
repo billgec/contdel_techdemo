@@ -1,9 +1,7 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
@@ -15,9 +13,7 @@ import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
-import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
-import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
+import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,8 +52,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispa
         val listView = findViewById<ListView>(R.id.listview_main)
 
         launch {
-            MockApiService.initializeLanParties()
-            datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
+            ApiService.initializeLanParties()
+            datasource = ApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
 
             /**
              * Update Filter

@@ -133,7 +133,7 @@ class FilterLan : AppCompatActivity() {
         }
 
         /*
-         * Create a new LAN
+         * Create a new Filter
          */
         btnFilter.setOnClickListener(object : View.OnClickListener {
             //initialize variables

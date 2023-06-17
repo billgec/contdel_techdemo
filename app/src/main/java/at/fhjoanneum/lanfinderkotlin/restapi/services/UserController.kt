@@ -23,15 +23,19 @@ object UserController {
                 accessUser.getUser { userList ->
                     for (user in userList) {
                         users.add(user)
-                        Log.d(TAG, "loading user... ${user.id} => ${user.username}")
                     }
-
                     currentUser = users.find { it.id == userId } ?: User("no Input", "no Input")
-                    Log.d(TAG, "CURRENT USER: ${currentUser.id} => ${currentUser.username}")
                     continuation.resume(Unit)
                 }
             }
         }
+    }
+
+    fun getCurrentUser(email:String) {
+        for (user in users)
+            if (user.email == email) {
+                currentUser = user
+            }
     }
 
     fun getUser(userId: String): User? {

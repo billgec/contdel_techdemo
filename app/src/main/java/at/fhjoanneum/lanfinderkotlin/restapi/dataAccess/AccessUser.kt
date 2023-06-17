@@ -2,7 +2,6 @@ package at.fhjoanneum.lanfinderkotlin.restapi.models
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -14,7 +13,6 @@ class AccessUser {
         db.collection("users")
             .add(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
@@ -63,7 +61,6 @@ class AccessUser {
             .document(id)
             .set(updatedUser)
             .addOnSuccessListener {
-                Log.d(TAG, "User updated successfully")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error updating user", e)
@@ -75,7 +72,6 @@ class AccessUser {
             .document(id)
             .delete()
             .addOnSuccessListener {
-                Log.d(TAG, "User deleted successfully")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error deleting user", e)

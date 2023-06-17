@@ -1,14 +1,16 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.services
 
+import android.content.ContentValues
+import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
-import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
-import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
-object MockApiService {
+object ApiService {
     val lanPartyController = LanPartyController
-    val currentUser: User = UserController.currentUser as User
+    val currentUser: User
+        get() = UserController.currentUser
+
     val lanParties: ArrayList<LanParty>
         get() = lanPartyController.lanPartyList
 
@@ -37,15 +39,21 @@ object MockApiService {
         get() {
             val allLanParties = lanParties
             val currentUser = currentUser
-            return allLanParties.filter { it?.registeredPlayers?.contains(currentUser) == true }
+            return allLanParties.filter { lan ->
+                lan?.organizer?.compareTo(currentUser) == 0 && lan.registeredPlayers?.any { player -> player?.compareTo(currentUser) == 0 } == true
+            }
         }
 
     val lanPartiesWhereCurrentUserIsNotSignedUpYet: List<LanParty?>
         get() {
             val allLanParties = lanParties
             val currentUser = currentUser
+            Log.e(ContentValues.TAG, "Error converting LanParty: ${currentUser.id}")
+
             return if (currentUser != null) {
-                allLanParties.filter { !it?.registeredPlayers?.contains(currentUser)!! }
+                allLanParties.filter { lan ->
+                    lan?.organizer?.compareTo(currentUser) != 0 && !lan.registeredPlayers?.any { player -> player?.compareTo(currentUser) == 0 }!!
+                }
             } else {
                 listOf()
             }
