@@ -30,7 +30,6 @@ class AccessLan {
         db.collection("lans")
             .add(lan)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
@@ -46,7 +45,6 @@ class AccessLan {
                     val lan = document.toObject(LanParty::class.java)
                     lan.id = document.id
                     lanList.add(lan)
-                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
                 callback(lanList)
             }

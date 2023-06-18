@@ -4,7 +4,7 @@ import at.fhjoanneum.lanfinderkotlin.restapi.service.api.model.BaseEntity
 import java.io.Serializable
 import java.util.GregorianCalendar
 
-class LanParty : Serializable, BaseEntity {
+class LanParty : BaseEntity {
     var name: String
     var zipCode: String
     var city: String

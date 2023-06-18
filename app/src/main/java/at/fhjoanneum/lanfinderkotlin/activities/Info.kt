@@ -2,13 +2,13 @@ package at.fhjoanneum.lanfinderkotlin.activities
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +16,11 @@ import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
-import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.stream.Collectors
+
 
 /**
  * This activity shows the User the information about the lan.
@@ -96,7 +97,8 @@ class Info : AppCompatActivity() {
         /*
          * Set the onClickListener for the button
          */
-        val currentUser = MockApiService.currentUser
+        val currentUser = ApiService.currentUser
+
         if (selectedLanParty.registeredPlayers!!.stream()
                 .filter { x: User? -> x!!.id == currentUser!!.id }
                 .collect(Collectors.toList()).size == 1
@@ -110,7 +112,7 @@ class Info : AppCompatActivity() {
                 val intent1 = Intent(this@Info, MainActivity::class.java)
                 startActivity(intent1)
                 if (selectedLanParty.registeredPlayers!!.size < selectedLanParty.amountMaxPlayers) {
-                    MockApiService.addUserToLanParty(
+                    ApiService.addUserToLanParty(
                         MockUsers.mockUsers[5],
                         selectedLanParty.id
                     )
@@ -145,7 +147,7 @@ class Info : AppCompatActivity() {
                         receivers[counter] = receiver!!.email
                         counter++
                     }
-                    MockApiService.deleteLanParty(selectedLanParty.id)
+                    ApiService.deleteLanParty(selectedLanParty.id)
                     Toast.makeText(
                         this@Info,
                         getString(R.string.lan_party_deleted_successfully),
@@ -163,8 +165,8 @@ class Info : AppCompatActivity() {
                 builder.setPositiveButton(getString(R.string.sign_off)) { dialog: DialogInterface?, which: Int ->
                     val deleteIntent = Intent(this@Info, MainActivity::class.java)
                     startActivity(deleteIntent)
-                    MockApiService.removeUserFromLanParty(
-                        MockApiService.currentUser,
+                    ApiService.removeUserFromLanParty(
+                        ApiService.currentUser,
                         selectedLanParty.id
                     )
                     Toast.makeText(

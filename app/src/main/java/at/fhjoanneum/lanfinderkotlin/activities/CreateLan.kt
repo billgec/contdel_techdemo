@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessLan
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
-import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 import java.util.Arrays
 import java.util.Calendar
 import java.util.Collections
@@ -191,7 +191,7 @@ class CreateLan : AppCompatActivity() {
                                         .dropLastWhile { it.isEmpty() }
                                         .toTypedArray())),
                             et_description.text.toString(),
-                            MockApiService.currentUser))
+                            ApiService.currentUser))
                         //make a Toast if creation was successful and go back to MainActivity
                         val intent = Intent(this@CreateLan, MainActivity::class.java)
                         Toast.makeText(this@CreateLan, getString(R.string.lan_created), Toast.LENGTH_SHORT).show()

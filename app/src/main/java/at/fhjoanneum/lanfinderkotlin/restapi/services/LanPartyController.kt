@@ -6,24 +6,33 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessLan
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import java.util.GregorianCalendar
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 object LanPartyController {
     private val accessLan = AccessLan()
     private val userController = UserController
-    val lanPartyList = arrayListOf<LanParty>()
+    var lanPartyList = arrayListOf<LanParty>()
 
-    init {
-        accessLan.getLan { lanList ->
-            for (lan in lanList) {
-                val convertedLan = applicationCompliance(lan)
-                if (convertedLan != null) {
-                    lanPartyList.add(convertedLan)
-                    Log.d(TAG, "loading lan... ${convertedLan.id}")
+    val users: ArrayList<User>
+        get() = userController.users
+
+    suspend fun init() {
+        userController.init()
+        suspendCoroutine<Unit> { continuation ->
+            accessLan.getLan { lanList ->
+                lanPartyList = arrayListOf<LanParty>()
+                for (lan in lanList) {
+                    val convertedLan = applicationCompliance(lan)
+                    if (convertedLan != null) {
+                        lanPartyList.add(convertedLan)
+                    }
                 }
+                continuation.resume(Unit)
             }
-            Log.d(TAG, "SOMETHING HAPPENDED")
         }
     }
+
 
     fun createLan(lan: LanParty){
         val newLan = databaseCompliance(lan)
@@ -32,6 +41,7 @@ object LanPartyController {
 
     private fun applicationCompliance(lanParty: AccessLan.LanParty): LanParty? {
         try {
+            //parse values
             val date = if (!lanParty.date.isNullOrEmpty()) {
                 val gregorianCalendar = GregorianCalendar()
                 gregorianCalendar.timeInMillis = lanParty.date.toLong()
@@ -39,13 +49,16 @@ object LanPartyController {
             } else {
                 null
             }
+
             val games = lanParty.games.split(",").toHashSet()
 
             val players = HashSet<User>()
-            for (userId in lanParty.registeredPlayers.split(",").toHashSet()) {
-                userController.getUser(userId)?.let { players.add(it) }
+            for (playerId in lanParty.registeredPlayers.split(",").toHashSet()) {
+                users.find { user -> user.id == playerId }?.let { players.add(it) }
             }
-            val convertedOrganizer = userController.getUser(lanParty.organizer)
+            val convertedOrganizer = users.find { user -> user.id == lanParty.organizer }
+
+            //create Lanparty with values
             return LanParty(
                 lanParty.id,
                 lanParty.name,
