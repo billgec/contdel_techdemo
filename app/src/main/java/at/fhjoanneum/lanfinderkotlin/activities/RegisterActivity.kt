@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : BasicActivity() {
@@ -56,9 +57,9 @@ class RegisterActivity : BasicActivity() {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful) {
                         val firebaseUser = task.result!!.user!!
+                        UserController.createUser(User(userName, email))
                         showCustomSnackbar("A new user has been created with Firebase", false)
                         startActivity(Intent(this, LoginActivity::class.java))
-                        val user = User(firebaseUser.uid, userName, email)
                     } else {
                         showCustomSnackbar(task.exception!!.toString(), true)
                     }

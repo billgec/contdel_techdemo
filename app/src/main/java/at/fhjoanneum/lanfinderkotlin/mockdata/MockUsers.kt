@@ -1,4 +1,4 @@
-package at.fhjoanneum.lanfinderkotlin.mockdata
+/*package at.fhjoanneum.lanfinderkotlin.mockdata
 
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
@@ -13,4 +13,4 @@ object MockUsers {
             User("6", "jurgengoekdemir", "juergen.guoekdemir@gmail.com")
         )
     )
-}
+}*/

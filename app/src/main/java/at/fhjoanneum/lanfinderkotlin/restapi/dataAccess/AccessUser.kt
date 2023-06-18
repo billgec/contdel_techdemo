@@ -2,7 +2,9 @@ package at.fhjoanneum.lanfinderkotlin.restapi.models
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -56,6 +58,12 @@ class AccessUser {
                 Log.w(TAG, "Error getting user", exception)
                 callback(null)
             }
+    }
+
+    fun getUserByEmail(email: String): Task<QuerySnapshot> {
+        return db.collection("users")
+            .whereEqualTo("email", email)
+            .get()
     }
 
     fun updateUser(id: String, updatedUser: User) {

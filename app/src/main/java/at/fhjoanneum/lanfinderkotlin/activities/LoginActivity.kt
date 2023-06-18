@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
+import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import at.fhjoanneum.lanfinderkotlin.restapi.services.CloudFirestore
 import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
@@ -46,10 +47,10 @@ class LoginActivity : BasicActivity() {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         showCustomSnackbar("You are logged in :)", false);
-
-                        //CloudFirestore().getUserDetails(this)
+                        var accessUser = AccessUser()
+                        accessUser.getUserByEmail(emailID).addOnSuccessListener { element -> userLoggedInSuccess(element.first().toObject(User::class.java)) }
                         //todo use function of Benj instead and call userLoggedInSuccess
-                        userLoggedInSuccess(UserController.currentUser);
+
                     } else {
                         showCustomSnackbar(task.exception!!.message.toString(), true);
                     }

@@ -14,6 +14,22 @@ object UserController {
     val userId = "00FHLxEP82s9EQaEVplQ" // id in cloud firestore
 
     init {
+        loadUsers()
+    }
+
+    fun getUser(userId: String): User? {
+        return users.find { it.id == userId }
+    }
+
+    fun getUserByEmail(email: String): User? {
+        return users.find { it.email == email }
+    }
+
+    fun createUser(user: User) {
+        accessUser.createUser(user)
+    }
+
+    fun loadUsers() {
         accessUser.getUser { userList ->
             // Iterate through the userList and process the users
             for (user in userList) {
@@ -24,13 +40,5 @@ object UserController {
             currentUser = users.find { it.id == userId } ?: User("no Input", "no Input")
             Log.d(TAG, "ATTENTION ${currentUser.id} => ${currentUser.username}")
         }
-    }
-
-    fun getUser(userId: String): User? {
-        return users.find { it.id == userId }
-    }
-
-    fun createUser(user: User) {
-        accessUser.createUser(user)
     }
 }

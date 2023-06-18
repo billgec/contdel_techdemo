@@ -16,7 +16,9 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
+import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessLan
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
 import at.fhjoanneum.lanfinderkotlin.restapi.services.MockApiService
 import java.util.Arrays
 import java.util.Calendar
@@ -175,7 +177,7 @@ class CreateLan : AppCompatActivity() {
                     builder.setTitle(getString(R.string.create_lan))
                     builder.setMessage(getString(R.string.do_you_want_to_create_this_lan))
                     builder.setPositiveButton(getString(R.string.create)) { dialog: DialogInterface?, which: Int ->
-                        MockApiService.createLanParty(LanParty(
+                        LanPartyController.createLan(LanParty(
                             et_name.text.toString(),
                             et_plz.text.toString(),
                             et_city.text.toString(),

@@ -1,4 +1,4 @@
-package at.fhjoanneum.lanfinderkotlin.mockdata
+/*package at.fhjoanneum.lanfinderkotlin.mockdata
 
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import java.util.GregorianCalendar
@@ -128,3 +128,4 @@ object MockLanParties {
         )
     )
 }
+*/

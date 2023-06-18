@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity() {
             NetworkUtils.openNetworkErrorDialog(this)
         }
 
+        LanPartyController.loadLans()
+
         val listView = findViewById<ListView>(R.id.listview_main)
         datasource = MockApiService.lanPartiesWhereCurrentUserIsNotSignedUpYet as ArrayList<LanParty?>
 
