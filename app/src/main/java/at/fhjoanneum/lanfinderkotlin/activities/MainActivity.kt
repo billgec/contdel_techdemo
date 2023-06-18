@@ -10,12 +10,15 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,6 +46,15 @@ class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispa
             setLogo(R.drawable.ic_logo_actionbar)
             setDisplayUseLogoEnabled(true)
         }
+
+        lifecycleScope.launch{
+            UserController.init()
+            var email = intent.extras?.getString("user_info")
+            if (email != null) {
+                UserController.userId = UserController.getCurrentUser(email).id
+                UserController.init()
+            }
+        }
     }
 
     override fun onStart() {
@@ -50,8 +62,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispa
         if (!NetworkUtils.isNetworkConnected(this)) {
             NetworkUtils.openNetworkErrorDialog(this)
         }
-
-        LanPartyController.loadLans()
 
         val listView = findViewById<ListView>(R.id.listview_main)
 

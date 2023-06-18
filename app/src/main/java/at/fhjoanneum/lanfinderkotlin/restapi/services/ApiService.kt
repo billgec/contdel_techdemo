@@ -27,10 +27,11 @@ object ApiService {
     }
 
     fun addUserToLanParty(user: User?, lanPartyId: String) {
-        val mockLanParty = MockLanParties.mockLanParties.find { it?.id == lanPartyId }
-        val currentRegisteredPlayers = mockLanParty?.registeredPlayers
+        val lanParty = lanParties.find { it?.id == lanPartyId }
+        val currentRegisteredPlayers = lanParty?.registeredPlayers
         currentRegisteredPlayers?.add(user)
-        mockLanParty?.registeredPlayers = currentRegisteredPlayers
+        lanParty?.registeredPlayers = currentRegisteredPlayers
+        lanPartyController.updateLan(lanPartyId, lanParty!!)
     }
 
     val lanPartiesForCurrentUser: List<LanParty?>

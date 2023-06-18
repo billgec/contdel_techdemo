@@ -52,14 +52,14 @@ object LanPartyController {
 
             val games = lanParty.games.split(",").toHashSet()
 
-            val players = HashSet<User>()
+            val players = HashSet<User?>()
             for (playerId in lanParty.registeredPlayers.split(",").toHashSet()) {
                 users.find { user -> user.id == playerId }?.let { players.add(it) }
             }
             val convertedOrganizer = users.find { user -> user.id == lanParty.organizer }
 
             //create Lanparty with values
-            return LanParty(
+            var lanparty = LanParty(
                 lanParty.id,
                 lanParty.name,
                 lanParty.zipCode,
@@ -70,6 +70,8 @@ object LanPartyController {
                 lanParty.description,
                 convertedOrganizer
             )
+            lanparty.registeredPlayers = players;
+            return lanparty
         } catch (e: Exception) {
             Log.e(TAG, "Error converting LanParty: ${e.message}")
         }
@@ -109,5 +111,9 @@ object LanPartyController {
             }
             Log.d(TAG, "SOMETHING HAPPENDED")
         }
+    }
+
+    fun updateLan(id: String, updatedLan: LanParty) {
+        accessLan.updateLan(id, databaseCompliance(updatedLan))
     }
 }

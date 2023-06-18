@@ -113,7 +113,7 @@ class Info : AppCompatActivity() {
                 startActivity(intent1)
                 if (selectedLanParty.registeredPlayers!!.size < selectedLanParty.amountMaxPlayers) {
                     ApiService.addUserToLanParty(
-                        MockUsers.mockUsers[5],
+                        ApiService.currentUser,
                         selectedLanParty.id
                     )
                     //val etDescription = findViewById<EditText>(R.id.et_description) todo remove or add notification

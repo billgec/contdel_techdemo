@@ -13,7 +13,7 @@ object UserController {
     var currentUser: User = User("no Input", "no Input") // Default value
 
     // Retrieve a user by ID
-    val userId = "00FHLxEP82s9EQaEVplQ" // id in cloud firestore
+    var userId = "00FHLxEP82s9EQaEVplQ" // id in cloud firestore
 
     suspend fun init() {
         withContext(Dispatchers.IO) {
@@ -29,11 +29,12 @@ object UserController {
         }
     }
 
-    fun getCurrentUser(email:String) {
+    fun getCurrentUser(email:String): User {
         for (user in users)
             if (user.email == email) {
                 currentUser = user
             }
+        return currentUser
     }
 
     fun getUser(userId: String): User? {

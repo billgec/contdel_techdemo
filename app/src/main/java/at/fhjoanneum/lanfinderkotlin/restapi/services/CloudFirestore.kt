@@ -26,7 +26,7 @@ class CloudFirestore {
             }
     }
 
-    fun getUserDetails(loginActivity: LoginActivity){
+    /*fun getUserDetails(loginActivity: LoginActivity){
         firestoreInstance
             .collection(Constants.TABLENAME_USER)
             .document(getCurrentUserID())
@@ -38,7 +38,7 @@ class CloudFirestore {
             .addOnFailureListener { exp ->
                 Log.e(loginActivity.javaClass.name, "error occured", exp)
             }
-    }
+    }*/
 
     private fun getCurrentUserID() : String{
         val currentUser = FirebaseAuth.getInstance().currentUser

@@ -8,9 +8,11 @@ import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
+import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import at.fhjoanneum.lanfinderkotlin.restapi.services.CloudFirestore
 import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.runBlocking
 
 class LoginActivity : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +49,12 @@ class LoginActivity : BasicActivity() {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         showCustomSnackbar("You are logged in :)", false);
-                        var accessUser = AccessUser()
-                        accessUser.getUserByEmail(emailID).addOnSuccessListener { element -> userLoggedInSuccess(element.first().toObject(User::class.java)) }
+                        //var accessUser = AccessUser()
+                        //accessUser.getUserByEmail(emailID).addOnSuccessListener { element -> userLoggedInSuccess(element.first().toObject(User::class.java)) }
                         //todo use function of Benj instead and call userLoggedInSuccess
-
+                        //var user = UserController.users.filter { it.email == emailID }.first()
+                        //UserController.currentUser = user
+                        userLoggedInSuccess(emailID)
                     } else {
                         showCustomSnackbar(task.exception!!.message.toString(), true);
                     }
@@ -74,9 +78,9 @@ class LoginActivity : BasicActivity() {
         }
     }
 
-    fun userLoggedInSuccess(user : User){
+    fun userLoggedInSuccess(email: String){
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("user_info", user)
+        intent.putExtra("user_info", email)
         startActivity(intent)
     }
 }
