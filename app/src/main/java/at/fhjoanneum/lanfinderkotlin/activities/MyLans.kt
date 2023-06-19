@@ -35,6 +35,9 @@ class MyLans : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            NetworkUtils.openNetworkErrorDialog(this)
+        }
         val listView = findViewById<ListView>(R.id.listview_myLans)
         datasource = MockApiService.lanPartiesForCurrentUser as ArrayList<LanParty?>
         val adapter: ArrayAdapter<*> = MyLansAdapter(this, datasource)
