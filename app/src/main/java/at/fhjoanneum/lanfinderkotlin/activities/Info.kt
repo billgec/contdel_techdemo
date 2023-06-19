@@ -114,7 +114,7 @@ class Info : AppCompatActivity() {
                 if (selectedLanParty.registeredPlayers!!.size < selectedLanParty.amountMaxPlayers) {
                     ApiService.addUserToLanParty(
                         ApiService.currentUser,
-                        selectedLanParty.id
+                        selectedLanParty
                     )
                     //val etDescription = findViewById<EditText>(R.id.et_description) todo remove or add notification
                     Toast.makeText(
