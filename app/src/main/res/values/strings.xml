@@ -43,7 +43,7 @@
     <string name="offline">stay offline</string>
     <string name="offline_message_title">No Network connection!</string>
     <string name="offline_message_description">There are no updates in the Event list. To access all functions a network connection is required. </string>
-    <string name="btnFilter">Filter by selection</string>
+    <string name="btnFilter">Filter</string>
     <string name="filter_title">Filter List</string>
     <string name="use_this_filter">Apply this filter?</string>
     <string name="use">Apply</string>
