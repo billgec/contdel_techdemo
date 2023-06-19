@@ -32,6 +32,15 @@ class Info : AppCompatActivity() {
         val intent = intent
         val bundle = intent.extras
         val selectedLanParty = bundle!!.getSerializable("selectedLanParty") as LanParty?
+        val btnSignUp = findViewById<View>(R.id.btn_signup)
+        val messageBox = findViewById<View>(R.id.et_description)
+
+        if (!NetworkUtils.isNetworkConnected(this)) {
+            NetworkUtils.openNetworkErrorDialog(this)
+            btnSignUp.isEnabled = false
+            btnSignUp.alpha = 0.2f
+            messageBox.isEnabled = false
+        }
 
         /*
          * Action Bar settings (set logo to action bar and back button)
