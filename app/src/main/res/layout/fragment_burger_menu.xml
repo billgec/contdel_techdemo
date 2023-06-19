@@ -62,6 +62,19 @@
             app:layout_constraintBottom_toTopOf="@+id/create_lan_fab"
             app:layout_constraintEnd_toEndOf="@id/create_lan_fab" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/logout_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="Logout"
+            android:src="@drawable/ic_logout"
+            app:backgroundTint="#B9BBBE"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/filter_lan_fab"
+            app:layout_constraintEnd_toEndOf="@id/filter_lan_fab" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

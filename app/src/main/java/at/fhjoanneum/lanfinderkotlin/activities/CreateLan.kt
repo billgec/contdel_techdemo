@@ -16,13 +16,14 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.services.MockApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessLan
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
+import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
 import java.util.Arrays
 import java.util.Calendar
 import java.util.Collections
 import java.util.GregorianCalendar
-import java.util.Objects
 
 /**
  * This activity is used to create a new LAN.
@@ -176,7 +177,7 @@ class CreateLan : AppCompatActivity() {
                     builder.setTitle(getString(R.string.create_lan))
                     builder.setMessage(getString(R.string.do_you_want_to_create_this_lan))
                     builder.setPositiveButton(getString(R.string.create)) { dialog: DialogInterface?, which: Int ->
-                        MockApiService.createLanParty(LanParty(
+                        ApiService.createLan(LanParty(
                             et_name.text.toString(),
                             et_plz.text.toString(),
                             et_city.text.toString(),
@@ -190,7 +191,7 @@ class CreateLan : AppCompatActivity() {
                                         .dropLastWhile { it.isEmpty() }
                                         .toTypedArray())),
                             et_description.text.toString(),
-                            MockApiService.currentUser))
+                            ApiService.currentUser))
                         //make a Toast if creation was successful and go back to MainActivity
                         val intent = Intent(this@CreateLan, MainActivity::class.java)
                         Toast.makeText(this@CreateLan, getString(R.string.lan_created), Toast.LENGTH_SHORT).show()

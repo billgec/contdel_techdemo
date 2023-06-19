@@ -48,4 +48,23 @@
     <string name="use_this_filter">Apply this filter?</string>
     <string name="use">Apply</string>
     <string name="filter_applied">Filter applied</string>
+    <string name="tv_login_title_text">Welcome!</string>
+    <string name="et_login_email_hint">Email</string>
+    <string name="et_login_password_hint">Password</string>
+    <string name="btn_login_login_text">Login</string>
+    <string name="tv_login_donthaveanaccount_text">Don\'t have an account?</string>
+    <string name="tv_login_register_text">Register</string>
+    <string name="tv_login_forgotpassword_text">Forgot password?</string>
+    <string name="tv_register_title_text">Create an account</string>
+    <string name="til_register_firstname_hint">First name</string>
+    <string name="til_lastname_hint">Last name</string>
+    <string name="til_register_confirmpassword_hint">Confirm Password</string>
+    <string name="cb_register_termsandcondition_text">I agree to the Terms and Conditions</string>
+    <string name="btn_register_register_text">Register</string>
+    <string name="tv_register_alreadyhaveanaccount_text">Already have an account?</string>
+    <string name="tv_register_login_text">Login</string>
+    <string name="tv_forgotpassword_title_text">Forgot password?</string>
+    <string name="tv_forgotpassword_description_text">Please enter your email address and we\'ll send you an email to reset your password.</string>
+    <string name="btn_forgotpassword_submit_text">Submit</string>
+    <string name="til_register_username_hint">Username</string>
 </resources>

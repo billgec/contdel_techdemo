@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.models.LanParty
+import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import java.util.Calendar
 
 class MainAdapter(context: Context?, lanParties: ArrayList<LanParty?>?) : ArrayAdapter<Any?>(
