@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispa
                         filter.city.isNotEmpty() && lanParty?.city != filter.city -> false
                         filter.zipCode.isNotEmpty() && lanParty?.zipCode != filter.zipCode -> false
                         filter.date != null && lanParty?.date != filter.date -> false
-                        filter.games.isNotEmpty() && filter.games.firstOrNull() != "Select Game" && !lanParty?.games?.containsAll(filter.games)!! -> false
+                        filter.games.isNotEmpty() && filter.games.firstOrNull() != getString(R.string.select_game) && !lanParty?.games?.containsAll(filter.games)!! -> false
                         else -> true
                     }
 
