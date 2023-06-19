@@ -12,8 +12,8 @@ import at.fhjoanneum.lanfinderkotlin.activities.CreateLan
 import at.fhjoanneum.lanfinderkotlin.activities.FilterLan
 import at.fhjoanneum.lanfinderkotlin.activities.MainActivity
 import at.fhjoanneum.lanfinderkotlin.activities.MyLans
-import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.deleteFilter
-import at.fhjoanneum.lanfinderkotlin.models.Filter.Companion.isFilter
+import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.deleteFilter
+import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BurgerMenu : Fragment() {
