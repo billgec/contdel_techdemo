@@ -39,4 +39,13 @@
     <string name="signed_up_successfully">Signed up successfully!</string>
     <string name="lan_party_deleted_successfully">Lan party deleted successfully!</string>
     <string name="signed_off_successfully">Signed off successfully!</string>
+    <string name="retry_connection">retry connection</string>
+    <string name="offline">stay offline</string>
+    <string name="offline_message_title">No Network connection!</string>
+    <string name="offline_message_description">There are no updates in the Event list. To access all functions a network connection is required. </string>
+    <string name="btnFilter">Filter by selection</string>
+    <string name="filter_title">Filter List</string>
+    <string name="use_this_filter">Apply this filter?</string>
+    <string name="use">Apply</string>
+    <string name="filter_applied">Filter applied</string>
 </resources>
