@@ -49,11 +49,6 @@ class LoginActivity : BasicActivity() {
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
                         showCustomSnackbar("You are logged in :)", false);
-                        //var accessUser = AccessUser()
-                        //accessUser.getUserByEmail(emailID).addOnSuccessListener { element -> userLoggedInSuccess(element.first().toObject(User::class.java)) }
-                        //todo use function of Benj instead and call userLoggedInSuccess
-                        //var user = UserController.users.filter { it.email == emailID }.first()
-                        //UserController.currentUser = user
                         userLoggedInSuccess(emailID)
                     } else {
                         showCustomSnackbar(task.exception!!.message.toString(), true);

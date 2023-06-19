@@ -1,16 +1,37 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import at.fhjoanneum.lanfinderkotlin.R
+import com.google.firebase.auth.FirebaseAuth
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
 
         setupActionBar()
+
+        val btnForgotPasswordSubmit: Button = findViewById(R.id.btn_forgotpassword_submit)
+
+        btnForgotPasswordSubmit.setOnClickListener {
+            val email = validateEmail()
+            if(email != null) {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            showCustomSnackbar("An email was sent to your email address", false)
+                            startActivity(Intent(this, LoginActivity::class.java))
+                        } else {
+                            showCustomSnackbar(task.exception!!.message.toString(), true)
+                        }
+                    }
+            }
+        }
     }
 
     private fun setupActionBar() {
@@ -22,5 +43,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
         toolbarRegisterActivity.setNavigationOnClickListener{ onBackPressedDispatcher.onBackPressed()}
+    }
+
+    private fun validateEmail(): String? {
+        val etEmail : EditText = findViewById(R.id.et_forgotpassword_email)
+        val email : String = etEmail.text.toString().trim { it <= ' ' }
+
+        if (email.isEmpty()) {
+            showCustomSnackbar("Please enter email.", true)
+            return null
+        }
+
+        return email
     }
 }
