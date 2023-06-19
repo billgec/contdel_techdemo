@@ -20,20 +20,6 @@ object ApiService {
 
     }
 
-    fun createLanParty(lanParty: LanParty): Boolean {
-        //createLan() in Access Logic
-        MockLanParties.mockLanParties.add(lanParty)
-        return true
-    }
-
-    fun addUserToLanParty(user: User?, lanPartyId: String) {
-        val lanParty = lanParties.find { it?.id == lanPartyId }
-        val currentRegisteredPlayers = lanParty?.registeredPlayers
-        currentRegisteredPlayers?.add(user)
-        lanParty?.registeredPlayers = currentRegisteredPlayers
-        lanPartyController.updateLan(lanPartyId, lanParty!!)
-    }
-
     val lanPartiesForCurrentUser: List<LanParty?>
         get() {
             val allLanParties = lanParties
@@ -55,15 +41,47 @@ object ApiService {
             }
         }
 
-    fun removeUserFromLanParty(user: User?, selectedLanPartyId: String) {
+
+    fun createLanParty(lanParty: LanParty): Boolean {
+        //createLan() in Access Logic
+        LanPartyController.createLan(lanParty)
+        return true
+    }
+
+    fun addUserToLanParty(user: User?, lanPartyId: String) : Boolean{
+        try {
+            val lanParty = lanParties.find { it?.id == lanPartyId }
+            val currentRegisteredPlayers = lanParty?.registeredPlayers
+            currentRegisteredPlayers?.add(user)
+            lanParty?.registeredPlayers = currentRegisteredPlayers
+            lanPartyController.updateLan(lanParty!!)
+            return true
+        } catch (e: Exception) {
+            return false
+        }
+    }
+
+    fun removeUserFromLanParty(user: User?, lanParty: LanParty) :Boolean {
+        try {
+            lanParty.registeredPlayers?.remove(user)
+            LanPartyController.updateLan(lanParty)
+            return true
+        } catch (e:Exception){
+            return false
+        }
+    /*
         val mockLanParty = MockLanParties.mockLanParties.find { it?.id == selectedLanPartyId }
         val currentRegisteredPlayers = mockLanParty?.registeredPlayers
         currentRegisteredPlayers?.remove(user)
-        mockLanParty?.registeredPlayers = currentRegisteredPlayers
+        mockLanParty?.registeredPlayers = currentRegisteredPlayers*/
     }
 
-    fun deleteLanParty(lanPartyId: String) {
-        val mockLanParty = MockLanParties.mockLanParties.find { it?.id == lanPartyId }
-        MockLanParties.mockLanParties.remove(mockLanParty)
+    fun deleteLanParty(lanParty: LanParty) : Boolean{
+        try {
+            LanPartyController.deleteLan(lanParty.id)
+            return true
+        } catch (e:Exception){
+            return false
+        }
     }
 }

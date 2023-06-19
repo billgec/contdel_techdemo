@@ -39,6 +39,10 @@ object LanPartyController {
         accessLan.createLan(newLan)
     }
 
+    fun deleteLan(id :String) {
+        accessLan.deleteLan(id)
+    }
+
     private fun applicationCompliance(lanParty: AccessLan.LanParty): LanParty? {
         try {
             //parse values
@@ -100,20 +104,7 @@ object LanPartyController {
         )
     }
 
-    fun loadLans() {
-        accessLan.getLan { lanList ->
-            for (lan in lanList) {
-                val convertedLan = applicationCompliance(lan)
-                if (convertedLan != null) {
-                    lanPartyList.add(convertedLan)
-                    Log.d(TAG, "loading lan... ${convertedLan.id}")
-                }
-            }
-            Log.d(TAG, "SOMETHING HAPPENDED")
-        }
-    }
-
-    fun updateLan(id: String, updatedLan: LanParty) {
-        accessLan.updateLan(id, databaseCompliance(updatedLan))
+    fun updateLan(updatedLan: LanParty) {
+        accessLan.updateLan(updatedLan.id, databaseCompliance(updatedLan))
     }
 }

@@ -134,6 +134,8 @@ class Info : AppCompatActivity() {
          */
         if (selectedLanParty.organizer!!.id == currentUser!!.id) { //is creator
             findViewById<View>(R.id.icon_delete).setOnClickListener { v: View? ->
+
+                //deleteCode
                 val builder = AlertDialog.Builder(this@Info)
                 builder.setTitle(getString(R.string.delete_lan))
                 builder.setMessage(getString(R.string.are_you_sure_you_want_to_delete_this_lan))
@@ -147,7 +149,7 @@ class Info : AppCompatActivity() {
                         receivers[counter] = receiver!!.email
                         counter++
                     }
-                    ApiService.deleteLanParty(selectedLanParty.id)
+                    ApiService.deleteLanParty(selectedLanParty)
                     Toast.makeText(
                         this@Info,
                         getString(R.string.lan_party_deleted_successfully),
@@ -167,7 +169,7 @@ class Info : AppCompatActivity() {
                     startActivity(deleteIntent)
                     ApiService.removeUserFromLanParty(
                         ApiService.currentUser,
-                        selectedLanParty.id
+                        selectedLanParty
                     )
                     Toast.makeText(
                         this@Info,
