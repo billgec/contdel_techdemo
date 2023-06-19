@@ -42,19 +42,16 @@ object ApiService {
         }
 
 
-    fun createLanParty(lanParty: LanParty): Boolean {
+    fun createLan(lanParty: LanParty): Boolean {
         //createLan() in Access Logic
         LanPartyController.createLan(lanParty)
         return true
     }
 
-    fun addUserToLanParty(user: User?, lanPartyId: String) : Boolean{
+    fun addUserToLanParty(user: User?, lanParty: LanParty) : Boolean{
         try {
-            val lanParty = lanParties.find { it?.id == lanPartyId }
-            val currentRegisteredPlayers = lanParty?.registeredPlayers
-            currentRegisteredPlayers?.add(user)
-            lanParty?.registeredPlayers = currentRegisteredPlayers
-            lanPartyController.updateLan(lanParty!!)
+            lanParty?.registeredPlayers?.add(user)
+            lanPartyController.updateLan(lanParty)
             return true
         } catch (e: Exception) {
             return false
@@ -66,14 +63,9 @@ object ApiService {
             lanParty.registeredPlayers?.remove(user)
             LanPartyController.updateLan(lanParty)
             return true
-        } catch (e:Exception){
+        } catch (e:Exception) {
             return false
         }
-    /*
-        val mockLanParty = MockLanParties.mockLanParties.find { it?.id == selectedLanPartyId }
-        val currentRegisteredPlayers = mockLanParty?.registeredPlayers
-        currentRegisteredPlayers?.remove(user)
-        mockLanParty?.registeredPlayers = currentRegisteredPlayers*/
     }
 
     fun deleteLanParty(lanParty: LanParty) : Boolean{
@@ -84,4 +76,5 @@ object ApiService {
             return false
         }
     }
+
 }

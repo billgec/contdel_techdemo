@@ -177,7 +177,7 @@ class CreateLan : AppCompatActivity() {
                     builder.setTitle(getString(R.string.create_lan))
                     builder.setMessage(getString(R.string.do_you_want_to_create_this_lan))
                     builder.setPositiveButton(getString(R.string.create)) { dialog: DialogInterface?, which: Int ->
-                        LanPartyController.createLan(LanParty(
+                        ApiService.createLan(LanParty(
                             et_name.text.toString(),
                             et_plz.text.toString(),
                             et_city.text.toString(),
