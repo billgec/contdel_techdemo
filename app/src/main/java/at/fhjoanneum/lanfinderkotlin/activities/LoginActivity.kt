@@ -48,7 +48,7 @@ class LoginActivity : BasicActivity() {
                 .signInWithEmailAndPassword(emailID, password)
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful){
-                        showCustomSnackbar("You are logged in :)", false);
+                        showCustomSnackbar(getString(R.string.you_are_logged_in), false);
                         userLoggedInSuccess(emailID)
                     } else {
                         showCustomSnackbar(task.exception!!.message.toString(), true);
@@ -77,5 +77,6 @@ class LoginActivity : BasicActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("user_info", email)
         startActivity(intent)
+        finish()
     }
 }

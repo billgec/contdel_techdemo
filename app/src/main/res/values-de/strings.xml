@@ -46,4 +46,23 @@
     <string name="use_this_filter">Diesen Filter anwenden?</string>
     <string name="use">Anwenden</string>
     <string name="filter_applied">Filter angewendet</string>
+    <string name="tv_login_title_text">Willkommen!</string>
+    <string name="et_login_email_hint">E-Mail</string>
+    <string name="et_login_password_hint">Passwort</string>
+    <string name="btn_login_login_text">Einloggen</string>
+    <string name="tv_login_donthaveanaccount_text">Du hast keinen Account?</string>
+    <string name="tv_login_register_text">Registrieren</string>
+    <string name="tv_login_forgotpassword_text">Passwort vergessen?</string>
+    <string name="tv_register_title_text">Account erstellen</string>
+    <string name="til_register_firstname_hint">Vorname</string>
+    <string name="til_lastname_hint">Nachname</string>
+    <string name="til_register_confirmpassword_hint">Passwort bestätigen</string>
+    <string name="cb_register_termsandcondition_text">Ich stimme den Allgemeinen Geschäftsbedingungen zu</string>
+    <string name="btn_register_register_text">Registrieren</string>
+    <string name="tv_register_alreadyhaveanaccount_text">Du hast schon einen Account?</string>
+    <string name="tv_register_login_text">Einloggen</string>
+    <string name="tv_forgotpassword_title_text">Passwort vergessen?</string>
+    <string name="tv_forgotpassword_description_text">Gib bitte deine E-Mail-Adresse ein und wir werden dir eine E-Mail senden, um dein Passwort zurückzusetzen</string>
+    <string name="btn_forgotpassword_submit_text">Abschicken</string>
+    <string name="til_register_username_hint">Benutzername</string>
 </resources>

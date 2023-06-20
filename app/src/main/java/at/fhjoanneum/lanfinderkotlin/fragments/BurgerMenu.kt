@@ -109,6 +109,7 @@ class BurgerMenu : Fragment() {
         logout_fab?.setOnClickListener { listenerView ->
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(activity, LoginActivity::class.java))
+            activity?.finish()
         }
         return view
     }

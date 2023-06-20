@@ -24,8 +24,9 @@ class ForgotPasswordActivity : BasicActivity() {
                 FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            showCustomSnackbar("An email was sent to your email address", false)
+                            showCustomSnackbar(getString(R.string.an_email_was_sent_to_your_email_address), false)
                             startActivity(Intent(this, LoginActivity::class.java))
+                            finish()
                         } else {
                             showCustomSnackbar(task.exception!!.message.toString(), true)
                         }
@@ -50,7 +51,7 @@ class ForgotPasswordActivity : BasicActivity() {
         val email : String = etEmail.text.toString().trim { it <= ' ' }
 
         if (email.isEmpty()) {
-            showCustomSnackbar("Please enter email.", true)
+            showCustomSnackbar(getString(R.string.please_enter_your_email_address), true)
             return null
         }
 

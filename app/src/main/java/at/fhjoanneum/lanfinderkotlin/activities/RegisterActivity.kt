@@ -60,6 +60,7 @@ class RegisterActivity : BasicActivity() {
                         UserController.createUser(User(userName, email))
                         showCustomSnackbar("A new user has been created with Firebase", false)
                         startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
                     } else {
                         showCustomSnackbar(task.exception!!.toString(), true)
                     }
