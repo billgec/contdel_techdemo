@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- CreateLan activity -->
     <string name="name_your_lan_party">Benenne deine Lan Party!</string>
     <string name="enter_your_location">Stadt</string>
     <string name="enter_date_time">Gib bitte ein Datum und eine Uhrzeit ein</string>
@@ -8,10 +9,6 @@
     <string name="create">Erstellen</string>
     <string name="description">Beschreibung (optional)</string>
     <string name="plz">Postleitzahl</string>
-    <string name="sign_up">Registrieren</string>
-    <string name="write_a_message">Schreibe eine Nachricht</string>
-    <string name="new_player_mail">Ein neuer Spieler ist deiner Lan Party beigetreten</string>
-    <string name="placeholder">Platzhalter</string>
     <string name="create_lan_party">Erstelle eine LAN Party</string>
     <string name="choose_games">Wähle Spiele aus</string>
     <string name="ok">OK</string>
@@ -26,24 +23,33 @@
     <string name="create_lan">LAN Party erstellen</string>
     <string name="do_you_want_to_create_this_lan">Möchtest du diese LAN Party erstellen?</string>
     <string name="lan_created">LAN Party erstellt</string>
+    <!-- Register -->
+    <string name="sign_up">Registrieren</string>
+    <string name="write_a_message">Schreibe eine Nachricht</string>
+    <!-- Manage Lan-party -->
     <string name="no">Nein</string>
     <string name="this_lan_is_already_full">Diese LAN Party ist schon voll!</string>
     <string name="delete_lan">LAN Party löschen</string>
     <string name="are_you_sure_you_want_to_sign_off_of_this_lan">Bist du dir sicher, dass du dich von dieser LAN Party abmelden möchtest?</string>
-    <string name="sign_off">Abmelden</string>
     <string name="my_lans">Meine LANs</string>
     <string name="are_you_sure_you_want_to_delete_this_lan">Bist du sicher, dass du diese LAN Party löschen möchtest?</string>
     <string name="delete">Löschen</string>
+    <!-- Firebase -->
     <string name="signed_up_successfully">Erfolgreich angemeldet!</string>
     <string name="lan_party_deleted_successfully">LAN Party erfolgreich gelöscht!</string>
     <string name="signed_off_successfully">Erfolgreich abgemeldet!</string>
     <string name="retry_connection">neu verbinden</string>
+    <string name="sign_off">Abmelden</string>
     <string name="offline">Offline bleiben</string>
     <string name="offline_message_title">Keine Netzwerkverbindung!</string>
     <string name="offline_message_description">Die Eventliste kann nicht upgedated werden. Um alle Funktionen uneingeschränkt nutzen zu können benötigt LanFinder eine Netzwerkverbindung. </string>
+    <!-- Filter -->
     <string name="btnFilter">Filtern</string>
     <string name="filter_title">Filter Liste</string>
     <string name="use_this_filter">Diesen Filter anwenden?</string>
     <string name="use">Anwenden</string>
     <string name="filter_applied">Filter angewendet</string>
+    <!-- Others -->
+    <string name="new_player_mail">Ein neuer Spieler ist deiner Lan Party beigetreten</string>
+    <string name="placeholder">Platzhalter</string>
 </resources>
