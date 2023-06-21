@@ -26,9 +26,9 @@
     <!-- Register -->
     <string name="sign_up">Registrieren</string>
     <string name="write_a_message">Schreibe eine Nachricht</string>
+    <string name="this_lan_is_already_full">Diese LAN Party ist schon voll!</string>
     <!-- Manage Lan-party -->
     <string name="no">Nein</string>
-    <string name="this_lan_is_already_full">Diese LAN Party ist schon voll!</string>
     <string name="delete_lan">LAN Party löschen</string>
     <string name="are_you_sure_you_want_to_sign_off_of_this_lan">Bist du dir sicher, dass du dich von dieser LAN Party abmelden möchtest?</string>
     <string name="my_lans">Meine LANs</string>
