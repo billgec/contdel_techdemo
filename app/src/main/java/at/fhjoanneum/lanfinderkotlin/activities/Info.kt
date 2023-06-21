@@ -2,18 +2,15 @@ package at.fhjoanneum.lanfinderkotlin.activities
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockUsers
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
@@ -47,9 +44,7 @@ class Info : AppCompatActivity() {
          * Action Bar settings (set logo to action bar and back button)
          */
         supportActionBar?.apply {
-            setDisplayShowHomeEnabled(true)
-            setLogo(R.drawable.ic_logo_actionbar)
-            setDisplayUseLogoEnabled(true)
+            setTitle(selectedLanParty?.name) // Set the name of the LAN party as the title
             setDisplayHomeAsUpEnabled(true)
         }
 
