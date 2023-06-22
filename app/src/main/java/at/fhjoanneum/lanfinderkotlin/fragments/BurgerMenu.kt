@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.activities.CreateLan
 import at.fhjoanneum.lanfinderkotlin.activities.FilterLan
-import at.fhjoanneum.lanfinderkotlin.activities.LoginActivity
 import at.fhjoanneum.lanfinderkotlin.activities.MainActivity
 import at.fhjoanneum.lanfinderkotlin.activities.MyLans
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.deleteFilter
@@ -106,10 +105,7 @@ class BurgerMenu : Fragment() {
             startActivity(intent)
         }
 
-        logout_fab?.setOnClickListener { listenerView ->
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(activity, LoginActivity::class.java))
-        }
+
         return view
     }
 }
