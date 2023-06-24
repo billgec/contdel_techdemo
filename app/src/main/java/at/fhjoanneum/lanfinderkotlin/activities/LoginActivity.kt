@@ -60,12 +60,12 @@ class LoginActivity : BasicActivity() {
     private fun validateLoginInformation(emailID: String, password:String) : Boolean{
         return when {
             emailID.isEmpty() -> {
-                showCustomSnackbar("Please enter email.", true);
+                showCustomSnackbar(getString(R.string.please_enter_email), true);
                 false
             }
 
             password.isEmpty() -> {
-                showCustomSnackbar("Please enter password.", true);
+                showCustomSnackbar(getString(R.string.please_enter_password), true);
                 false
             }
 

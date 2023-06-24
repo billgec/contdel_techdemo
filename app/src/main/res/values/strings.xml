@@ -70,4 +70,12 @@
     <string name="an_email_was_sent_to_your_email_address">An email was sent to your email address</string>
     <string name="please_enter_your_email_address">Please enter your email address.</string>
     <string name="you_are_logged_in">You are logged in :)</string>
+    <string name="please_enter_email">Please enter email.</string>
+    <string name="please_enter_password">Please enter password.</string>
+    <string name="a_new_user_has_been_created_with_firebase">A new user has been created with Firebase</string>
+    <string name="you_are_registered_successfully">You are registered successfully.</string>
+    <string name="please_enter_first_name">Please enter first name.</string>
+    <string name="please_enter_confirm_password">Please enter confirm password.</string>
+    <string name="password_and_confirm_password_do_not_match">Password and confirm password do not match.</string>
+    <string name="please_agree_terms_and_conditions">Please agree terms and conditions</string>
 </resources>

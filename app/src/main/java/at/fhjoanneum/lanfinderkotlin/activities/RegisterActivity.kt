@@ -58,7 +58,7 @@ class RegisterActivity : BasicActivity() {
                     if(task.isSuccessful) {
                         val firebaseUser = task.result!!.user!!
                         UserController.createUser(User(userName, email))
-                        showCustomSnackbar("A new user has been created with Firebase", false)
+                        showCustomSnackbar(getString(R.string.a_new_user_has_been_created_with_firebase), false)
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
                     } else {
@@ -69,7 +69,7 @@ class RegisterActivity : BasicActivity() {
     }
 
     fun userRegistrationSuccess(){
-        Toast.makeText(this, "You are registered successfully.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.you_are_registered_successfully), Toast.LENGTH_SHORT).show()
     }
 
     fun validateUserInformation(): Boolean {
@@ -86,27 +86,27 @@ class RegisterActivity : BasicActivity() {
 
         val returnValue = when {
             userName.isEmpty() -> {
-                showCustomSnackbar("Please enter first name.", true)
+                showCustomSnackbar(getString(R.string.please_enter_first_name), true)
                 false
             }
             email.isEmpty() -> {
-                showCustomSnackbar("Please enter email.", true)
+                showCustomSnackbar(getString(R.string.please_enter_email), true)
                 false
             }
             password.isEmpty() -> {
-                showCustomSnackbar("Please enter password.", true)
+                showCustomSnackbar(getString(R.string.please_enter_password), true)
                 false
             }
             confirmPassword.isEmpty() -> {
-                showCustomSnackbar("Please enter confirm password.", true)
+                showCustomSnackbar(getString(R.string.please_enter_confirm_password), true)
                 false
             }
             password != confirmPassword -> {
-                showCustomSnackbar("Password and confirm password do not match.", true)
+                showCustomSnackbar(getString(R.string.password_and_confirm_password_do_not_match), true)
                 false
             }
             !cbTermsAndCondition.isChecked -> {
-                showCustomSnackbar("Please agree terms and conditions", true)
+                showCustomSnackbar(getString(R.string.please_agree_terms_and_conditions), true)
                 false
             }
             else -> true
