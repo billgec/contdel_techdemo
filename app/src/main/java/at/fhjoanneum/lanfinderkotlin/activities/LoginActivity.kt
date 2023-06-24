@@ -11,6 +11,7 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import at.fhjoanneum.lanfinderkotlin.restapi.services.CloudFirestore
 import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.runBlocking
 
@@ -60,12 +61,12 @@ class LoginActivity : BasicActivity() {
     private fun validateLoginInformation(emailID: String, password:String) : Boolean{
         return when {
             emailID.isEmpty() -> {
-                showCustomSnackbar(getString(R.string.please_enter_email), true);
+                (findViewById(R.id.til_login_email) as TextInputLayout).error = getString(R.string.please_enter_email)
                 false
             }
 
             password.isEmpty() -> {
-                showCustomSnackbar(getString(R.string.please_enter_password), true);
+                (findViewById(R.id.til_login_password) as TextInputLayout).error = getString(R.string.please_enter_password)
                 false
             }
 

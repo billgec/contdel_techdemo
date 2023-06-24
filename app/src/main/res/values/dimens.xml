@@ -2,12 +2,101 @@
 <resources>
     <!-- Overriding sizes of the FAB -->
     <dimen name="design_fab_size_normal">70dp</dimen>
-    <dimen name="et_16dp_padding">16dp</dimen>
+
+    <dimen name="et_width_300dp">300dp</dimen>
+    <dimen name="et_width_260dp">260dp</dimen>
+    <dimen name="et_width_180dp">180dp</dimen>
+    <dimen name="et_margin_10dp">10dp</dimen>
+    <dimen name="et_margin_20dp">20dp</dimen>
+    <dimen name="et_margin_22dp">22dp</dimen>
+    <dimen name="et_margin_35dp">35dp</dimen>
+    <dimen name="et_margin_42dp">42dp</dimen>
+    <dimen name="et_minHeight_48dp">48dp</dimen>
+    <dimen name="et_minHeight_36dp">36dp</dimen>
     <dimen name="et_16sp_textsize">16sp</dimen>
+    <dimen name="et_textSize_19sp">19sp</dimen>
+    <dimen name="et_padding_10dp">10dp</dimen>
+    <dimen name="et_16dp_padding">16dp</dimen>
+    <dimen name="et_drawablePadding_31dp">31dp</dimen>
+
+
+    <dimen name="tv_width_0dp">0dp</dimen>
+    <dimen name="tv_margin_3dp">3dp</dimen>
+    <dimen name="tv_margin_5dp">5dp</dimen>
+    <dimen name="tv_margin_10dp">10dp</dimen>
+    <dimen name="tv_margin_16dp">16dp</dimen>
+    <dimen name="tv_margin_18dp">18dp</dimen>
+    <dimen name="tv_margin_20dp">20dp</dimen>
+    <dimen name="tv_margin_28dp">28dp</dimen>
+    <dimen name="tv_margin_32dp">32dp</dimen>
+    <dimen name="tv_margin_35dp">35dp</dimen>
+    <dimen name="tv_margin_36dp">36dp</dimen>
+    <dimen name="tv_margin_42dp">42dp</dimen>
+    <dimen name="tv_margin_64dp">64dp</dimen>
+    <dimen name="tv_minHeight_36dp">36dp</dimen>
+    <dimen name="tv_textSize_15sp">15sp</dimen>
+    <dimen name="tv_16sp_textsize">16sp</dimen>
+    <dimen name="tv_textSize_18sp">18sp</dimen>
+    <dimen name="tv_forgotpassword_18sp_description_textsize">18sp</dimen>
+    <dimen name="tv_textSize_19sp">19sp</dimen>
+    <dimen name="tv_20sp_textsize">20sp</dimen>
+    <dimen name="tv_textSize_21sp">21sp</dimen>
+    <dimen name="tv_textSize_24sp">24sp</dimen>
+    <dimen name="tv_padding_5dp">5dp</dimen>
+    <dimen name="tv_padding_10dp">10dp</dimen>
+    <dimen name="tv_drawablePadding_31dp">31dp</dimen>
+    <dimen name="tv_5dp_padding">5dp</dimen>
+
+
+    <dimen name="btn_textSize_16sp">16sp</dimen>
+    <dimen name="btn_width_130dp">130dp</dimen>
+    <dimen name="btn_height_55dp">55dp</dimen>
+    <dimen name="btn_margin_10dp">10dp</dimen>
+    <dimen name="btn_margin_16dp">16dp</dimen>
+    <dimen name="btn_margin_20dp">20dp</dimen>
+    <dimen name="btn_margin_30dp">30dp</dimen>
+    <dimen name="btn_margin_32dp">32dp</dimen>
     <dimen name="btn_8dp_padding">8dp</dimen>
     <dimen name="btn_18sp_textsize">18sp</dimen>
-    <dimen name="tv_5dp_padding">5dp</dimen>
-    <dimen name="tv_16sp_textsize">16sp</dimen>
-    <dimen name="tv_20sp_textsize">20sp</dimen>
-    <dimen name="tv_forgotpassword_18sp_description_textsize">18sp</dimen>
+
+    <dimen name="iv_width_30dp">30dp</dimen>
+    <dimen name="iv_width_33dp">33dp</dimen>
+    <dimen name="iv_width_36dp">36dp</dimen>
+    <dimen name="iv_width_42dp">42dp</dimen>
+    <dimen name="iv_width_50dp">50dp</dimen>
+    <dimen name="iv_height_30dp">30dp</dimen>
+    <dimen name="iv_height_33dp">33dp</dimen>
+    <dimen name="iv_height_35dp">35dp</dimen>
+    <dimen name="iv_height_39dp">39dp</dimen>
+    <dimen name="iv_height_42dp">42dp</dimen>
+    <dimen name="iv_height_50dp">50dp</dimen>
+    <dimen name="iv_height_200dp">200dp</dimen>
+    <dimen name="iv_margin_10dp">10dp</dimen>
+    <dimen name="iv_margin_19dp">19dp</dimen>
+    <dimen name="iv_margin_20dp">20dp</dimen>
+    <dimen name="iv_margin_28dp">28dp</dimen>
+    <dimen name="iv_margin_30dp">30dp</dimen>
+    <dimen name="iv_margin_35dp">35dp</dimen>
+    <dimen name="iv_margin_36dp">36dp</dimen>
+    <dimen name="iv_margin_45dp">45dp</dimen>
+
+    <dimen name="til_margin_16dp">16dp</dimen>
+    <dimen name="til_margin_20dp">20dp</dimen>
+
+    <dimen name="v_width_300dp">300dp</dimen>
+    <dimen name="v_height_200dp">200dp</dimen>
+    <dimen name="v_margin_50dp">50dp</dimen>
+
+    <dimen name="ll_margin_64dp">64dp</dimen>
+    <dimen name="ll_margin_32dp">32dp</dimen>
+    <dimen name="ll_margin_20dp">20dp</dimen>
+    <dimen name="ll_padding_10dp">10dp</dimen>
+
+    <dimen name="cl_padding_10dp">10dp</dimen>
+
+    <dimen name="cb_margin_16dp">16dp</dimen>
+
+    <dimen name="fab_margin_25dp">25dp</dimen>
+    <dimen name="fab_margin_20dp">20dp</dimen>
+    <dimen name="fab_margin_15dp">15dp</dimen>
 </resources>

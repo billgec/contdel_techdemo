@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/iv_login_fhj_logo"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/iv_height_200dp"
         android:scaleType="fitXY"
         android:src="@drawable/logo_img"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/tv_login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/tv_margin_32dp"
         android:text="@string/tv_login_title_text"
         android:textStyle="bold"
         android:textColor="@color/et_color"
@@ -33,7 +33,7 @@
         android:id="@+id/til_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/til_margin_16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_login_title"
@@ -41,7 +41,9 @@
         app:boxStrokeColor="@color/et_color"
         android:backgroundTint="@color/et_color"
         android:textColorHint="@color/et_color"
-        app:hintTextColor="@color/et_color">
+        app:hintTextColor="@color/et_color"
+        app:startIconDrawable="@drawable/baseline_email_24"
+        app:startIconTint="@color/et_color" >
 
         <EditText
             android:id="@+id/et_login_email"
@@ -61,7 +63,7 @@
         android:id="@+id/til_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/til_margin_16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_login_email"
@@ -69,19 +71,23 @@
         app:boxStrokeColor="@color/et_color"
         android:backgroundTint="@color/et_color"
         android:textColorHint="@color/et_color"
-        app:hintTextColor="@color/et_color">
+        app:hintTextColor="@color/et_color"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/baseline_lock_24"
+        app:startIconTint="@color/et_color"
+        app:endIconTint="@color/et_color">
 
         <EditText
             android:id="@+id/et_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:backgroundTint="@color/et_color"
             android:hint="@string/et_login_password_hint"
+            android:inputType="textPassword"
             android:padding="@dimen/et_16dp_padding"
-            android:textSize="@dimen/et_16sp_textsize"
             android:textColor="@color/et_color"
             android:textColorHint="@color/et_color"
-            android:backgroundTint="@color/et_color" />
+            android:textSize="@dimen/et_16sp_textsize" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -89,7 +95,7 @@
         android:id="@+id/btn_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/btn_margin_16dp"
         android:padding="@dimen/btn_8dp_padding"
         android:text="@string/btn_login_login_text"
         android:textSize="@dimen/btn_18sp_textsize"
@@ -103,7 +109,7 @@
         android:id="@+id/ll_login_registernewaccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/ll_margin_64dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +146,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_login_registernewaccount"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/tv_margin_16dp"
         android:textColor="@color/et_color"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

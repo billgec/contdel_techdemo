@@ -57,8 +57,8 @@
     <string name="et_login_password_hint">Passwort</string>
     <string name="btn_login_login_text">Einloggen</string>
     <string name="tv_login_donthaveanaccount_text">Du hast keinen Account?</string>
-    <string name="tv_login_register_text">Registrieren</string>
-    <string name="tv_login_forgotpassword_text">Passwort vergessen?</string>
+    <string name="tv_login_register_text"><u>Registrieren</u></string>
+    <string name="tv_login_forgotpassword_text"><u>Passwort vergessen?</u></string>
     <string name="tv_register_title_text">Account erstellen</string>
     <string name="til_register_firstname_hint">Vorname</string>
     <string name="til_lastname_hint">Nachname</string>
@@ -66,9 +66,24 @@
     <string name="cb_register_termsandcondition_text">Ich stimme den Allgemeinen Geschäftsbedingungen zu</string>
     <string name="btn_register_register_text">Registrieren</string>
     <string name="tv_register_alreadyhaveanaccount_text">Du hast schon einen Account?</string>
-    <string name="tv_register_login_text">Einloggen</string>
+    <string name="tv_register_login_text"><u>Einloggen</u></string>
     <string name="tv_forgotpassword_title_text">Passwort vergessen?</string>
     <string name="tv_forgotpassword_description_text">Gib bitte deine E-Mail-Adresse ein und wir werden dir eine E-Mail senden, um dein Passwort zurückzusetzen</string>
     <string name="btn_forgotpassword_submit_text">Abschicken</string>
     <string name="til_register_username_hint">Benutzername</string>
+    <string name="an_email_was_sent_to_your_email_address">Eine E-Mail wurde and deine E-Mail-Adresse geschickt.</string>
+    <string name="please_enter_your_email_address">Bitte gib deine E-Mail-Adresse ein.</string>
+    <string name="you_are_logged_in">Du bist eingeloggt :)</string>
+    <string name="please_enter_email">Bitte E-Mail eingeben</string>
+    <string name="please_enter_password">Bitte Passwort eingeben</string>
+    <string name="a_new_user_has_been_created_with_firebase">Ein neuer Benutzer wurde mit Firebase erstellt.</string>
+    <string name="you_are_registered_successfully">Du bist erfolgreich registriert.</string>
+    <string name="please_enter_first_name">Bitte Vornamen eingeben</string>
+    <string name="please_enter_confirm_password">Bitte Passwort-Bestätigung eingeben</string>
+    <string name="password_and_confirm_password_do_not_match">Passwort und Passwort-Bestätigung stimmen nicht überein</string>
+    <string name="please_agree_terms_and_conditions">Bitte allgemeinen Geschäftsbedingungen zustimmen</string>
+    <string name="mylans">Meine Lans</string>
+    <string name="filter_lan">LAN filtern</string>
+    <string name="logout">Ausloggen</string>
+    <string name="sign_off_of_lan">Von LAN abmelden</string>
 </resources>

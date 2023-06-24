@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="25dp"
+            android:layout_margin="@dimen/fab_margin_25dp"
             android:src="@drawable/ic_menu"
-            app:backgroundTint="#B9BBBE"
+            app:backgroundTint="@color/fab_background"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -28,36 +28,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/fab_margin_20dp"
             android:src="@drawable/ic_list"
-            app:backgroundTint="#B9BBBE"
+            app:backgroundTint="@color/fab_background"
             app:fabSize="normal"
             app:layout_constraintBottom_toTopOf="@+id/fab"
             app:layout_constraintEnd_toEndOf="@id/fab"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/mylans" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/create_lan_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="@dimen/fab_margin_15dp"
             android:src="@drawable/ic_plus"
-            app:backgroundTint="#B9BBBE"
+            app:backgroundTint="@color/fab_background"
             app:fabSize="normal"
             app:layout_constraintBottom_toTopOf="@+id/my_lans_fab"
             app:layout_constraintEnd_toEndOf="@id/my_lans_fab"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/create_lan" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/filter_lan_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="15dp"
-            android:contentDescription="TODO"
+            android:layout_marginBottom="@dimen/fab_margin_15dp"
+            android:contentDescription="@string/filter_lan"
             android:src="@drawable/ic_filter"
-            app:backgroundTint="#B9BBBE"
+            app:backgroundTint="@color/fab_background"
             app:fabSize="normal"
             app:layout_constraintBottom_toTopOf="@+id/create_lan_fab"
             app:layout_constraintEnd_toEndOf="@id/create_lan_fab" />
@@ -67,10 +67,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="15dp"
-            android:contentDescription="Logout"
+            android:layout_marginBottom="@dimen/fab_margin_15dp"
+            android:contentDescription="@string/logout"
             android:src="@drawable/ic_logout"
-            app:backgroundTint="#B9BBBE"
+            app:backgroundTint="@color/fab_background"
             app:fabSize="normal"
             app:layout_constraintBottom_toTopOf="@+id/filter_lan_fab"
             app:layout_constraintEnd_toEndOf="@id/filter_lan_fab" />

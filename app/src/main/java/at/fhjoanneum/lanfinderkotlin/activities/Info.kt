@@ -157,7 +157,7 @@ class Info : AppCompatActivity() {
         } else { //is not creator
             findViewById<View>(R.id.icon_delete).setOnClickListener { v: View? ->
                 val builder = AlertDialog.Builder(this@Info)
-                builder.setTitle(getString(R.string.delete_lan))
+                builder.setTitle(getString(R.string.sign_off_of_lan))
                 builder.setMessage(getString(R.string.are_you_sure_you_want_to_sign_off_of_this_lan))
                 builder.setPositiveButton(getString(R.string.sign_off)) { dialog: DialogInterface?, which: Int ->
                     val deleteIntent = Intent(this@Info, MainActivity::class.java)

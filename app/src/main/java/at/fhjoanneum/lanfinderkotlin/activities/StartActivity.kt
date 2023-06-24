@@ -18,7 +18,9 @@ class StartActivity : AppCompatActivity() {
                 //if yes => call HomeActivity
                 // if no => call LoginActivity
                 if(FirebaseAuth.getInstance().currentUser != null){
-                    startActivity(Intent(this, MainActivity::class.java))
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("user_info", FirebaseAuth.getInstance().currentUser!!.email)
+                    startActivity(intent)
                     //splash activity should be closed and not shown again if the back-button is clicked!
                     finish()
                 } else {

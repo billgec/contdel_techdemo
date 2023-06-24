@@ -13,4 +13,6 @@
 
     <color name="snackbar_error_color">#FF0000</color>
     <color name="snackbar_success_color">#2FFF00</color>
+
+    <color name="fab_background">#B9BBBE</color>
 </resources>

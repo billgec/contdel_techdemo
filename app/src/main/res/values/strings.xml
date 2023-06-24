@@ -60,8 +60,8 @@
     <string name="et_login_password_hint">Password</string>
     <string name="btn_login_login_text">Login</string>
     <string name="tv_login_donthaveanaccount_text">Don\'t have an account?</string>
-    <string name="tv_login_register_text">Register</string>
-    <string name="tv_login_forgotpassword_text">Forgot password?</string>
+    <string name="tv_login_register_text"><u>Register</u></string>
+    <string name="tv_login_forgotpassword_text"><u>Forgot password?</u></string>
     <string name="tv_register_title_text">Create an account</string>
     <string name="til_register_firstname_hint">First name</string>
     <string name="til_lastname_hint">Last name</string>
@@ -69,7 +69,7 @@
     <string name="cb_register_termsandcondition_text">I agree to the Terms and Conditions</string>
     <string name="btn_register_register_text">Register</string>
     <string name="tv_register_alreadyhaveanaccount_text">Already have an account?</string>
-    <string name="tv_register_login_text">Login</string>
+    <string name="tv_register_login_text"><u>Login</u></string>
     <string name="tv_forgotpassword_title_text">Forgot password?</string>
     <string name="tv_forgotpassword_description_text">Please enter your email address and we\'ll send you an email to reset your password.</string>
     <string name="btn_forgotpassword_submit_text">Submit</string>
@@ -85,4 +85,8 @@
     <string name="please_enter_confirm_password">Please enter confirm password.</string>
     <string name="password_and_confirm_password_do_not_match">Password and confirm password do not match.</string>
     <string name="please_agree_terms_and_conditions">Please agree terms and conditions</string>
+    <string name="mylans">My Lans</string>
+    <string name="filter_lan">Filter LAN</string>
+    <string name="logout">Logout</string>
+    <string name="sign_off_of_lan">Sign off of LAN</string>
 </resources>

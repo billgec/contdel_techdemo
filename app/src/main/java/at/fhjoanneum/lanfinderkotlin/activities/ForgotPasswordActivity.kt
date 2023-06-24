@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import at.fhjoanneum.lanfinderkotlin.R
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : BasicActivity() {
@@ -51,7 +52,8 @@ class ForgotPasswordActivity : BasicActivity() {
         val email : String = etEmail.text.toString().trim { it <= ' ' }
 
         if (email.isEmpty()) {
-            showCustomSnackbar(getString(R.string.please_enter_your_email_address), true)
+            findViewById<TextInputLayout>(R.id.til_forgotpassword_email)
+                .error = getString(R.string.please_enter_your_email_address)
             return null
         }
 
