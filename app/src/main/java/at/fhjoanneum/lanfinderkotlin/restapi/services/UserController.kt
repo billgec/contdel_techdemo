@@ -13,7 +13,7 @@ object UserController {
     var currentUser: User = User("no Input", "no Input") // Default value
 
     // Retrieve a user by ID
-    var userId = "00FHLxEP82s9EQaEVplQ" // id in cloud firestore
+    var userId = "99w9YdpYsGVMzBtreNaa" // id in cloud firestore
 
     suspend fun init() {
         withContext(Dispatchers.IO) {

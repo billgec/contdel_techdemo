@@ -1,92 +1,171 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.models
 
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.util.Log
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import at.fhjoanneum.lanfinderkotlin.restapi.dataAccess.Rest
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import okhttp3.ResponseBody
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.IOException
 
 class AccessUser {
-    private val db = Firebase.firestore
+    private val client = Rest.client
+    private var baseUrl = Rest.baseUrl
+
+    private fun userToJson(user: User): JSONObject {
+        val userJson = JSONObject()
+        userJson.put("username", user.username)
+        userJson.put("email", user.email)
+        return userJson
+    }
 
     fun createUser(user: User) {
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+        val json = userToJson(user)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaType())
+
+        val request = Request.Builder()
+            .url("$baseUrl/user")
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                Log.d(TAG, "User created successfully")
             }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error creating user: ${e.message}")
             }
+        })
     }
 
     fun getUser(callback: (List<User>) -> Unit) {
-        db.collection("users")
-            .get()
-            .addOnSuccessListener { result ->
-                val userList = mutableListOf<User>()
+        val request = Request.Builder()
+            .url("$baseUrl/users")
+            .build()
 
-                for (document in result) {
-                    val user = document.toObject(User::class.java)
-                    user.id = document.id
-                    userList.add(user)
-                }
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                val userList = parseUserListResponse(response.body)
 
-                // Pass the userList to the callback function
                 callback(userList)
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error getting users: ${e.message}")
+                callback(emptyList())
             }
+        })
     }
 
     fun getUser(userId: String, callback: (User?) -> Unit) {
-        db.collection("users").document(userId)
-            .get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val user = document.toObject(User::class.java)
-                    callback(user)
-                } else {
-                    callback(null)
-                }
+        val request = Request.Builder()
+            .url("$baseUrl/user/$userId")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                val user = parseUserResponse(response.body)
+                callback(user)
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting user", exception)
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error getting user: ${e.message}")
                 callback(null)
             }
+        })
     }
 
-    fun getUserByEmail(email: String): Task<QuerySnapshot> {
-        return db.collection("users")
-            .whereEqualTo("email", email)
-            .get()
+    fun getUserByEmail(email: String) {
+        val request = Request.Builder()
+            .url("$baseUrl/user?email=$email")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                // Handle the response
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error getting user by email: ${e.message}")
+            }
+        })
     }
 
     fun updateUser(id: String, updatedUser: User) {
-        db.collection("users")
-            .document(id)
-            .set(updatedUser)
-            .addOnSuccessListener {
+        val request = Request.Builder()
+            .url("$baseUrl/user/$id")
+            .put(RequestBody.create("application/json".toMediaTypeOrNull(), userToJson(updatedUser).toString()))
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
                 Log.d(TAG, "User updated successfully")
             }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error updating user", e)
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error updating user: ${e.message}")
             }
+        })
     }
 
     fun deleteUser(id: String) {
-        db.collection("users")
-            .document(id)
+        val request = Request.Builder()
+            .url("$baseUrl/user/$id")
             .delete()
-            .addOnSuccessListener {
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
                 Log.d(TAG, "User deleted successfully")
             }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error deleting user", e)
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error deleting user: ${e.message}")
             }
+        })
+    }
+
+    private fun parseUserListResponse(responseBody: ResponseBody?): List<User> {
+        val userList = mutableListOf<User>()
+
+        responseBody?.let {
+            val responseJsonArray = JSONArray(it.string())
+            for (i in 0 until responseJsonArray.length()) {
+                val userJson = responseJsonArray.getJSONObject(i)
+                val user = User(
+                    username = userJson.getString("username"),
+                    email = userJson.getString("email")
+                )
+                user.id = userJson.getString("id")
+                Log.d(ContentValues.TAG,"USER:       ${user.id}")
+                userList.add(user)
+            }
+        }
+
+        return userList
+    }
+
+    private fun parseUserResponse(responseBody: ResponseBody?): User? {
+        responseBody?.let {
+            val responseJson = JSONObject(it.string())
+            return User(
+                username = responseJson.getString("username"),
+                email = responseJson.getString("email")
+            )
+        }
+        return null
+    }
+
+    companion object {
+        private const val TAG = "AccessUser"
     }
 }

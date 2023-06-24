@@ -2,13 +2,25 @@ package at.fhjoanneum.lanfinderkotlin.restapi.models
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import at.fhjoanneum.lanfinderkotlin.activities.Info
+import at.fhjoanneum.lanfinderkotlin.restapi.dataAccess.Rest
 import at.fhjoanneum.lanfinderkotlin.restapi.service.api.model.BaseEntity
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import okhttp3.ResponseBody
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.IOException
+import okhttp3.OkHttpClient
+
 
 class AccessLan {
-    private val db = Firebase.firestore
+    private val client = OkHttpClient()
+    private val baseUrl = Rest.baseUrl
 
     data class LanParty(
         var name: String = "",
@@ -21,77 +33,136 @@ class AccessLan {
         var description: String = "",
         var organizer: String = ""
     ) : BaseEntity() {
-        // No-argument constructor required by Firestore
         constructor() : this("", "", "", "", 0, "", "", "", "")
     }
 
+    fun lanPartyToJson(lanParty: LanParty): JSONObject {
+        val lanJson = JSONObject()
+        lanJson.put("name", lanParty.name)
+        lanJson.put("zipCode", lanParty.zipCode)
+        lanJson.put("city", lanParty.city)
+        lanJson.put("date", lanParty.date)
+        lanJson.put("amountMaxPlayers", lanParty.amountMaxPlayers)
+        lanJson.put("registeredPlayers", lanParty.registeredPlayers)
+        lanJson.put("games", lanParty.games)
+        lanJson.put("description", lanParty.description)
+        lanJson.put("organizer", lanParty.organizer)
+        return lanJson
+    }
+
     fun createLan(lan: LanParty) {
-        // Add a new document with a generated ID
-        db.collection("lans")
-            .add(lan)
-            .addOnSuccessListener { documentReference ->
+        val json = lanPartyToJson(lan)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaType())
+
+        val request = Request.Builder()
+            .url("$baseUrl/addlanparty")
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    Log.d(TAG, "Lan added successfully")
+                } else {
+                    Log.w(TAG, "Error adding lan. Response code: ${response.code}")
+                }
             }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+            override fun onFailure(call: Call, e: IOException) {
+                Log.w(TAG, "Error adding lan", e)
             }
+        })
     }
 
     fun getLan(callback: (List<LanParty>) -> Unit) {
-        db.collection("lans")
-            .get()
-            .addOnSuccessListener { result ->
-                val lanList = mutableListOf<LanParty>()
-                for (document in result) {
-                    val lan = document.toObject(LanParty::class.java)
-                    lan.id = document.id
-                    lanList.add(lan)
-                }
+        val request = Request.Builder()
+            .url("$baseUrl/lanparties")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val lanList = parseResponse(response.body)
                 callback(lanList)
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
+
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                // Handle request failure or exceptions
+                println("API request failed: ${e.message}")
                 callback(emptyList())
             }
-    }
-
-    fun getLan(lanId: String, callback: (LanParty?) -> Unit) {
-        db.collection("lans").document(lanId)
-            .get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val lan = document.toObject(LanParty::class.java)
-                    callback(lan)
-                } else {
-                    callback(null)
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting lan", exception)
-                callback(null)
-            }
+        })
     }
 
     fun updateLan(id: String, updatedLan: LanParty) {
-        db.collection("lans")
-            .document(id)
-            .set(updatedLan)
-            .addOnSuccessListener {
-                Log.d(TAG, "Lan updated successfully")
+        val json = lanPartyToJson(updatedLan)
+        val requestBody = json.toString().toRequestBody("application/json".toMediaType())
+
+        Log.e(TAG, "ATTTENTION              $updatedLan")
+
+        val request = Request.Builder()
+            .url("$baseUrl/lanparty/update?id=$id")
+            .put(requestBody)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    Log.d(TAG, "Lan updated successfully")
+                } else {
+                    Log.w(TAG, "Error updating lan. Response code: ${response.code}")
+                }
             }
-            .addOnFailureListener { e ->
+
+            override fun onFailure(call: Call, e: IOException) {
                 Log.w(TAG, "Error updating lan", e)
             }
+        })
     }
 
     fun deleteLan(id: String) {
-        db.collection("lans")
-            .document(id)
+        val request = Request.Builder()
+            .url("$baseUrl/lanparty/delete?id=$id")
             .delete()
-            .addOnSuccessListener {
-                Log.d(TAG, "Lan deleted successfully")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    Log.d(TAG, "Lan deleted successfully")
+                } else {
+                    Log.w(TAG, "Error deleting lan. Response code: ${response.code}")
+                }
             }
-            .addOnFailureListener { e ->
+
+            override fun onFailure(call: Call, e: IOException) {
                 Log.w(TAG, "Error deleting lan", e)
             }
+        })
+    }
+
+    private fun parseResponse(responseBody: ResponseBody?): List<LanParty> {
+        val lanList = mutableListOf<LanParty>()
+
+        responseBody?.let {
+            val responseJsonArray = JSONArray(it.string())
+
+            for (i in 0 until responseJsonArray.length()) {
+                val lanJson = responseJsonArray.getJSONObject(i)
+                val lan = LanParty(
+                    name = lanJson.getString("name"),
+                    zipCode = lanJson.getString("zipCode"),
+                    city = lanJson.getString("city"),
+                    date = lanJson.getString("date"),
+                    amountMaxPlayers = lanJson.getInt("amountMaxPlayers"),
+                    registeredPlayers = lanJson.getString("registeredPlayers"),
+                    games = lanJson.getString("games"),
+                    description = lanJson.getString("description"),
+                    organizer = lanJson.getString("organizer")
+                )
+                lan.id = lanJson.getString("id")
+                Log.d(TAG,"LAN:       ${lan.id}")
+                lanList.add(lan)
+            }
+        }
+        return lanList
     }
 }

@@ -1,5 +1,7 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.services
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
@@ -48,9 +50,10 @@ object ApiService {
         return true
     }
 
-    fun addUserToLanParty(user: User?, lanParty: LanParty) : Boolean{
+    fun addUserToLanParty(user: User?, lanParty: LanParty): Boolean {
         try {
-            lanParty?.registeredPlayers?.add(user)
+            Log.e(TAG, "APISERVICE    ${lanParty.registeredPlayers?.first()?.id}")
+            Log.e(TAG, "APISERVICE    ${lanParty.registeredPlayers?.last()?.id}")
             lanPartyController.updateLan(lanParty)
             return true
         } catch (e: Exception) {
