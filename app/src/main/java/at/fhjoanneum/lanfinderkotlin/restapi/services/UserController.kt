@@ -7,6 +7,11 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+/*
+ * UserController
+ * Manages the creation, retrieval, and initialization of user data.
+ * May 25, 2023
+ */
 object UserController {
     val accessUser = AccessUser()
     val users = arrayListOf<User>()

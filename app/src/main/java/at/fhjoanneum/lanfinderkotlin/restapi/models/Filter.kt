@@ -2,6 +2,11 @@ package at.fhjoanneum.lanfinderkotlin.restapi.models
 
 import java.util.GregorianCalendar
 
+/*
+* Filter
+* Represents a filter for searching LAN parties.
+* May 25, 2023
+*/
 class Filter {
     lateinit var name: String
     lateinit var zipCode: String

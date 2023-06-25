@@ -1,9 +1,13 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.models
 
 import at.fhjoanneum.lanfinderkotlin.restapi.service.api.model.BaseEntity
-import java.io.Serializable
 import java.util.GregorianCalendar
 
+/*
+* LanParty Model
+* Represents a LAN party event with its properties such as name, location, date, etc.
+* May 25, 2023
+*/
 class LanParty : BaseEntity {
     var name: String
     var zipCode: String

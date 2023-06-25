@@ -9,6 +9,11 @@ import java.util.GregorianCalendar
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+/*
+ * LanPartyController
+ * Manages the creation, deletion, and retrieval of LAN parties.
+ * May 25, 2023
+ */
 object LanPartyController {
     private val accessLan = AccessLan()
     private val userController = UserController

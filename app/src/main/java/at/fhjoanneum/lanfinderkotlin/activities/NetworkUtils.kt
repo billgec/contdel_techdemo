@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import at.fhjoanneum.lanfinderkotlin.R
 
+/*
+ * NetworkUtils
+ * Utility class for network-related operations.
+ * May 25, 2023
+ */
 object NetworkUtils {
     private var isDialogShown = true
 

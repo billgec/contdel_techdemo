@@ -1,12 +1,12 @@
 package at.fhjoanneum.lanfinderkotlin.fragments
 
-import androidx.fragment.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.activities.CreateLan
 import at.fhjoanneum.lanfinderkotlin.activities.FilterLan
@@ -18,6 +18,11 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 
+/*
+ * BurgerMenu Fragment
+ * Fragment for displaying the burger menu with options such as create LAN, filter LANs, view my LANs, and logout.
+ * May 25, 2023
+ */
 class BurgerMenu : Fragment() {
     var fab: FloatingActionButton? = null
     private var my_lans_fab: FloatingActionButton? = null

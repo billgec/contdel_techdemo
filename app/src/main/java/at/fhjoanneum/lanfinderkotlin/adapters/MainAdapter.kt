@@ -10,6 +10,11 @@ import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import java.util.Calendar
 
+/*
+ * MainAdapter
+ * Custom ArrayAdapter for displaying LanParty items in the main list view.
+ * May 25, 2023
+ */
 class MainAdapter(context: Context?, lanParties: ArrayList<LanParty?>?) : ArrayAdapter<Any?>(
     context!!, 0, lanParties!! as List<Any?>
 ) {

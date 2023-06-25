@@ -12,8 +12,10 @@ import at.fhjoanneum.lanfinderkotlin.adapters.MyLansAdapter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 
-/**
- * This activity shows all lans the user is a member of.
+/*
+ * MyLansActivity
+ * Activity to show all LAN parties the user is a member of.
+ * May 25, 2023
  */
 class MyLans : AppCompatActivity() {
     var datasource: ArrayList<LanParty?>? = null

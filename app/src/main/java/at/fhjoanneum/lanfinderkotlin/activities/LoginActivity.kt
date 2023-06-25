@@ -6,15 +6,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessUser
-import at.fhjoanneum.lanfinderkotlin.restapi.models.User
-import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
-import at.fhjoanneum.lanfinderkotlin.restapi.services.CloudFirestore
-import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.runBlocking
 
+/*
+ * LoginActivity
+ * Activity for user login.
+ * May 25, 2023
+ */
 class LoginActivity : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

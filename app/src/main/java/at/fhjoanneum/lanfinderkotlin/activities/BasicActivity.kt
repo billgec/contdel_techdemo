@@ -1,10 +1,15 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import com.google.android.material.snackbar.Snackbar
 
+/*
+ * BasicActivity
+ * Base activity for other activities within LANFinder
+ * Mai 25, 2023
+ */
 open class BasicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

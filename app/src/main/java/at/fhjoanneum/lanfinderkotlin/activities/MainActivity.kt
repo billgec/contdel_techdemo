@@ -1,9 +1,7 @@
 package at.fhjoanneum.lanfinderkotlin.activities
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
@@ -16,15 +14,16 @@ import at.fhjoanneum.lanfinderkotlin.adapters.MainAdapter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.getInstance
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter.Companion.isFilter
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
-import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
 import at.fhjoanneum.lanfinderkotlin.restapi.services.UserController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- * This activity shows all LANs the user can sign up for.
+/*
+ * MainActivity
+ * Activity to show all LAN parties the user can sign up for.
+ * May 25, 2023
  */
 class MainActivity : AppCompatActivity(), CoroutineScope by CoroutineScope(Dispatchers.Default) {
     private var datasource: ArrayList<LanParty?>? = null

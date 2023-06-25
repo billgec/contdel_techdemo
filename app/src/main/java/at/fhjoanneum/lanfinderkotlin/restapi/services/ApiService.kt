@@ -1,9 +1,13 @@
 package at.fhjoanneum.lanfinderkotlin.restapi.services
 
-import at.fhjoanneum.lanfinderkotlin.restapi.mockdata.MockLanParties
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.models.User
 
+/*
+ * ApiService
+ * Provides methods for accessing LAN party data and managing user interactions.
+ * May 25, 2023
+ */
 object ApiService {
     val lanPartyController = LanPartyController
     val currentUser: User

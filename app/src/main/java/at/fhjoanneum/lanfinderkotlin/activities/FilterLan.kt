@@ -17,10 +17,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
 import at.fhjoanneum.lanfinderkotlin.restapi.models.Filter
-import java.util.*
+import java.util.Arrays
+import java.util.Calendar
+import java.util.Collections
+import java.util.GregorianCalendar
 
-/**
- * This activity is used to create a new LAN.
+/*
+ * FilterLan
+ * This activity is used to create a new Filter.
+ * May 25, 2023
  */
 class FilterLan : AppCompatActivity() {
     //instances for date and time picker

@@ -19,8 +19,10 @@ import java.util.GregorianCalendar
 import java.util.stream.Collectors
 
 
-/**
- * This activity shows the User the information about the lan.
+/*
+ * Info
+ * Activity for displaying information about a LAN party.
+ * May 25, 2023
  */
 class Info : AppCompatActivity() {
     @SuppressLint("DefaultLocale", "SetTextI18n")

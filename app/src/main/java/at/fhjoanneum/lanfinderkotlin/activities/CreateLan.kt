@@ -16,17 +16,17 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import at.fhjoanneum.lanfinderkotlin.R
-import at.fhjoanneum.lanfinderkotlin.restapi.models.AccessLan
 import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import at.fhjoanneum.lanfinderkotlin.restapi.services.ApiService
-import at.fhjoanneum.lanfinderkotlin.restapi.services.LanPartyController
 import java.util.Arrays
 import java.util.Calendar
 import java.util.Collections
 import java.util.GregorianCalendar
 
-/**
+/*
+ * CreateLan
  * This activity is used to create a new LAN.
+ * May 25, 2023
  */
 class CreateLan : AppCompatActivity() {
     //instances for date and time picker

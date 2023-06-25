@@ -12,6 +12,11 @@ import at.fhjoanneum.lanfinderkotlin.restapi.models.LanParty
 import java.util.Calendar
 import java.util.GregorianCalendar
 
+/*
+ * MyLansAdapter
+ * Custom ArrayAdapter for displaying LanParty items in the "My Lans" list view.
+ * May 25, 2023
+ */
 class MyLansAdapter(context: Context?, lanParties: ArrayList<LanParty?>?) : ArrayAdapter<Any?>(
     context!!, 0, lanParties!! as List<Any?>
 ) {

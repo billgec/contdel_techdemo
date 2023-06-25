@@ -3,10 +3,14 @@ package at.fhjoanneum.lanfinderkotlin.restapi.models
 import android.content.ContentValues.TAG
 import android.util.Log
 import at.fhjoanneum.lanfinderkotlin.restapi.service.api.model.BaseEntity
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+/*
+ * LanParty Model
+ * Represents a LAN party event.
+ * May 25, 2023
+ */
 class AccessLan {
     private val db = Firebase.firestore
 

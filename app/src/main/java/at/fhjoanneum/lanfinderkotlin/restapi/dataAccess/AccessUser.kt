@@ -3,11 +3,15 @@ package at.fhjoanneum.lanfinderkotlin.restapi.models
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+/*
+ * AccessUser Model
+ * Provides methods for creating, retrieving, updating, and deleting user data from Firestore.
+ * May 25, 2023
+ */
 class AccessUser {
     private val db = Firebase.firestore
 
