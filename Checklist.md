@@ -27,17 +27,17 @@ Es wird dringend empfohlen, diese Checkliste in Ihr eigenes Projekt-Repository z
 
 ### Automatisierung
 - [x] Automatisierte Builds eingerichtet
-- [!] Automatisierte Tests implementiert
-- [!] Automatisierte Deployments konfiguriert
+- [x] Automatisierte Tests implementiert
+- ! Automatisierte Deployments konfiguriert - nicht implementiert, weil firebase nicht mehr läuft.
 
 ### Testing
-- [ ] Unit Tests geschrieben und automatisiert
-- [ ] Integrationstests implementiert (optional)
-- [ ] End-to-End Tests eingerichtet (optional)
+- [x] Unit Tests geschrieben und automatisiert
+- ! Integrationstests implementiert (optional) - nicht implementiert, weil optional :)
+- ! End-to-End Tests eingerichtet (optional) - nicht implementiert, weil optional :)
 
 ### Deployment-Strategien
 - [ ] Deployment-Strategien identifizieren
-- [ ] Rollback-Strategien (optional)
+- [ ] Rollback-Strategien (optional) - nicht implementiert, weil optional :)
 
 ### Containerisierung
 - [ ] Docker oder ähnliche Technologien eingesetzt
