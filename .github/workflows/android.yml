@@ -28,9 +28,15 @@ jobs:
       - name: Run unit tests
         run: ./gradlew test
 
-      - name: Log in to Firebase
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          file: app/build/outputs/apk/release/app-release.apk
+      - name: Build Docker Image
+        run: docker build -t lanfinderkotlin .
+
+      - name: Run Docker Container
+        run: docker run lanfinderkotlin
+
+      # - name: Log in to Firebase
+      #   uses: wzieba/Firebase-Distribution-Github-Action@v1
+      #   with:
+      #     appId: ${{secrets.FIREBASE_APP_ID}}
+      #     token: ${{secrets.FIREBASE_TOKEN}}
+      #     file: app/build/outputs/apk/release/app-release.apk
