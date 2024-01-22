@@ -29,6 +29,7 @@ Es wird dringend empfohlen, diese Checkliste in Ihr eigenes Projekt-Repository z
 - [x] Automatisierte Builds eingerichtet
 - [x] Automatisierte Tests implementiert
 - ! Automatisierte Deployments konfiguriert - nicht implementiert, weil firebase nicht mehr läuft. bzw. Benutzer ist nicht mehr vorhanden. Implementation wäre aber möglich gewesen.
+- ![img.png](img.png)
 
 ### Testing
 - [x] Unit Tests geschrieben und automatisiert
@@ -47,19 +48,19 @@ Es wird dringend empfohlen, diese Checkliste in Ihr eigenes Projekt-Repository z
 - [x] Integration in eine Build-Pipeline
 
 ### Konfigurationsmanagement
-- [ ] Konfigurationsdateien versioniert und zentralisiert
-- [ ] Verwendung in einer Build-Pipeline
+- [x] Konfigurationsdateien versioniert und zentralisiert
+- [x] Verwendung in einer Build-Pipeline
 
 ### Feedback-Schleifen & Benachrichtigungen
-- [ ] Feedback von Stakeholdern eingeholt und implementiert
-- [ ] Developer Benachrichtigungen
+- [?] Feedback von Stakeholdern eingeholt und implementiert
+- [?] Developer Benachrichtigungen
 
 ### Sicherheit
-- [ ] Zugangsdaten sicher hinterlegt
+- [x] Zugangsdaten sicher hinterlegt
 
 ### Datenbanken
-- [ ] Datenbank-Migrationen automatisiert
-- [ ] Datenbank-Backups und Recovery-Pläne
+- [!] Datenbank-Migrationen automatisiert
+- [!] Datenbank-Backups und Recovery-Pläne
 
 ### Abschluss und Dokumentation
-- [ ] Projekt-Dokumentation vervollständigt
+- [x] Projekt-Dokumentation vervollständigt
